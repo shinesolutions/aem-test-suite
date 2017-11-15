@@ -25,7 +25,7 @@ describe 'Content publishing', :type => :feature do
   end
 
   it 'should verify the content in the replicated test package' do
-    visit '/content/helloworld'
+    visit '/content/helloworld.html'
     expect(page).to have_content 'a feature'
   end
 
