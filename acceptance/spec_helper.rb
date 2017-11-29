@@ -6,7 +6,7 @@ require 'selenium/webdriver'
 require 'yaml'
 
 def read_config
-  YAML.load_file('test/acceptance/conf.yaml')
+  YAML.load_file('conf.yaml')
 end
 
 def init_author_client
