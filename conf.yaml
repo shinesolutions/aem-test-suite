@@ -1,6 +1,27 @@
 ---
+
+aem:
+  author:
+    username: admin
+    password: admin
+    protocol: http
+    host: localhost
+    port: 4502
+    debug: false
+  publish:
+    username: admin
+    password: admin
+    protocol: http
+    host: localhost
+    port: 4503
+    debug: false
+  dispatcher:
+    protocol: http
+    host: localhost
+    port: 80
+
 tmp_dir: /tmp/shinesolutions/aem-aws-stack-builder
 
-test_package:
+content_package:
   url: http://central.maven.org/maven2/com/shinesolutions/aem-helloworld-content/%{version}/aem-helloworld-content-%{version}.zip
   version: 0.0.1

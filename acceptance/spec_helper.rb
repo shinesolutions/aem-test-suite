@@ -9,29 +9,29 @@ def read_config
   YAML.load_file('conf.yaml')
 end
 
-def init_author_client
+def init_author_client(conf)
   RubyAem::Aem.new(
-    username: ENV['aem_author_username'] || 'admin',
-    password: ENV['aem_author_password'] || 'admin',
-    protocol: ENV['aem_author_protocol'] || 'http',
-    host: ENV['aem_author_host'] || 'localhost',
-    port: ENV['aem_author_port'] ? ENV['aem_author_port'].to_i : 4502,
-    debug: ENV['aem_author_debug'] ? ENV['aem_author_debug'] == 'true' : false
+    username: conf['username'] || 'admin',
+    password: conf['password'] || 'admin',
+    protocol: conf['protocol'] || 'http',
+    host: conf['host'] || 'localhost',
+    port: conf['port'] ? conf['port'].to_i : 4502,
+    debug: conf['debug'] ? conf['debug'] == true : false
   )
 end
 
-def init_publish_client
+def init_publish_client(conf)
   RubyAem::Aem.new(
-    username: ENV['aem_publish_username'] || 'admin',
-    password: ENV['aem_publish_password'] || 'admin',
-    protocol: ENV['aem_publish_protocol'] || 'http',
-    host: ENV['aem_publish_host'] || 'localhost',
-    port: ENV['aem_publish_port'] ? ENV['aem_publish_port'].to_i : 4503,
-    debug: ENV['aem_publish_debug'] ? ENV['aem_publish_debug'] == 'true' : false
+    username: conf['username'] || 'admin',
+    password: conf['password'] || 'admin',
+    protocol: conf['protocol'] || 'http',
+    host: conf['host'] || 'localhost',
+    port: conf['port'] ? conf['port'].to_i : 4503,
+    debug: conf['debug'] ? conf['debug'] == true : false
   )
 end
 
-def init_dispatcher_client
+def init_dispatcher_client(conf)
   Capybara.register_driver :chrome do |app|
     Capybara::Selenium::Driver.new(app, browser: :chrome)
   end
@@ -47,7 +47,7 @@ def init_dispatcher_client
   end
 
   Capybara.current_driver = :headless_chrome
-  Capybara.app_host = 'http://www.google.com'
+  Capybara.app_host = "#{conf['protocol']}://#{conf['host']}:#{conf['port']}"
 end
 
 def retry_opts
