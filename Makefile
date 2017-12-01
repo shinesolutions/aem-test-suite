@@ -3,6 +3,9 @@ deps:
 	rm -rf .bundle
 	bundle install
 
+lint:
+	rubocop
+
 acceptance:
 	rspec acceptance/
 
