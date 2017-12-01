@@ -38,12 +38,10 @@ def init_dispatcher_client(conf)
 
   Capybara.register_driver :headless_chrome do |app|
     capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-      chromeOptions: { args: %w(headless disable-gpu) }
+      chromeOptions: { args: %w[headless disable-gpu] }
     )
 
-    Capybara::Selenium::Driver.new app,
-      browser: :chrome,
-      desired_capabilities: capabilities
+    Capybara::Selenium::Driver.new app, browser: :chrome, desired_capabilities: capabilities
   end
 
   Capybara.current_driver = :headless_chrome
@@ -60,5 +58,4 @@ def retry_opts
   }
 end
 
-def result_handler(results)
-end
+def result_handler(results) end
