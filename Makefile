@@ -1,3 +1,5 @@
+ci: deps lint
+
 deps:
 	gem install bundler
 	rm -rf .bundle
@@ -9,4 +11,4 @@ lint:
 acceptance:
 	rspec acceptance/
 
-.PHONY: deps acceptance
+.PHONY: ci deps lint acceptance

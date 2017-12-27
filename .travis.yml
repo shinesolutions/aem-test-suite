@@ -1,0 +1,16 @@
+dist: trusty
+sudo: true
+language: ruby
+addons:
+  apt:
+    packages:
+    - shellcheck
+    - findutils
+script:
+  - make ci
+rvm:
+  - 2.4
+  - 2.3
+  - 2.2
+  - 2.1
+  - 2.0
