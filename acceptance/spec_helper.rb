@@ -58,4 +58,5 @@ def retry_opts
   }
 end
 
-def result_handler(results) end
+def result_handler(results)
+end

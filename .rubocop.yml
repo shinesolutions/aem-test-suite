@@ -16,14 +16,13 @@ Metrics/CyclomaticComplexity:
   Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
+  Enabled: false
+Naming/PredicateName:
   Enabled: false
 Style/BracesAroundHashParameters:
   EnforcedStyle: context_dependent
 Style/BlockDelimiters:
-  Enabled: false
-# enable Style/PredicateName as part of ruby_aem v2
-Style/PredicateName:
   Enabled: false
 Style/RaiseArgs:
   EnforcedStyle: compact
