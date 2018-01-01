@@ -24,5 +24,7 @@ Style/BracesAroundHashParameters:
   EnforcedStyle: context_dependent
 Style/BlockDelimiters:
   Enabled: false
+Style/EmptyMethod:
+  Enabled: false
 Style/RaiseArgs:
   EnforcedStyle: compact
