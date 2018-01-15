@@ -11,4 +11,7 @@ lint:
 acceptance:
 	rspec acceptance/
 
-.PHONY: ci deps lint acceptance
+security:
+	rspec security/
+
+.PHONY: ci deps lint acceptance security

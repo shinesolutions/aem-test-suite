@@ -3,7 +3,7 @@
 AEM Test Suite
 --------------
 
-AEM Test Suite is a work in progress and it's designed to be a suite of acceptance, compliance, performance, and recovery tests. The idea is you can run this test suite (or parts of it) against an AEM environment, as a mechanism to validate the status of that environment.
+AEM Test Suite is a work in progress and it's designed to be a suite of acceptance, security, performance, and recovery tests. The idea is you can run this test suite (or parts of it) against an AEM environment, as a mechanism to validate the status of that environment.
 
 Installation
 ------------
@@ -22,3 +22,7 @@ Usage
 Run the acceptance test:
 
     make acceptance
+
+Run the security test:
+
+    make security
