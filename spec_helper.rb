@@ -4,6 +4,7 @@ require 'net/http'
 require 'ruby_aem'
 require 'selenium/webdriver'
 require 'yaml'
+require 'capybara/poltergeist'
 
 def read_config
   YAML.load_file('conf.yaml')
@@ -32,19 +33,11 @@ def init_publish_client(conf)
 end
 
 def init_dispatcher_client(conf)
-  Capybara.register_driver :chrome do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, js_errors: false)
   end
 
-  Capybara.register_driver :headless_chrome do |app|
-    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-      chromeOptions: { args: %w[headless disable-gpu] }
-    )
-
-    Capybara::Selenium::Driver.new app, browser: :chrome, desired_capabilities: capabilities
-  end
-
-  Capybara.current_driver = :headless_chrome
+  Capybara.current_driver = :poltergeist
   Capybara.app_host = "#{conf['protocol']}://#{conf['host']}:#{conf['port']}"
 end
 

@@ -7,5 +7,7 @@ describe 'Publish-Dispatcher', type: :feature do
   end
 
   it 'should prevent clickjacking' do
+    visit '/content/helloworld.html'
+    expect(response_headers['X-Frame-Options']).to eq('SAMEORIGIN')
   end
 end
