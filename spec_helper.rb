@@ -2,7 +2,6 @@ require 'capybara/rspec'
 require 'fileutils'
 require 'net/http'
 require 'ruby_aem'
-require 'selenium/webdriver'
 require 'yaml'
 require 'capybara/poltergeist'
 
