@@ -7,6 +7,8 @@ describe 'Publish-Dispatcher', type: :feature do
   end
 
   it 'should set up DoS prevention by making /.json inaccessible' do
+    visit '/.json'
+    expect(page.status_code).to eq(404)
   end
 
   it 'should set up clickjacking prevention by setting X-Frame-Options header' do
