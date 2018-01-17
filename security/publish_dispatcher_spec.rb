@@ -6,7 +6,10 @@ describe 'Publish-Dispatcher', type: :feature do
     init_dispatcher_client(@conf['aem']['dispatcher'])
   end
 
-  it 'should prevent clickjacking' do
+  it 'should set up DoS prevention by making /.json inaccessible' do
+  end
+
+  it 'should set up clickjacking prevention by setting X-Frame-Options header' do
     visit '/'
     expect(response_headers['X-Frame-Options']).to eq('SAMEORIGIN')
   end
