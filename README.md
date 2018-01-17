@@ -9,7 +9,8 @@ Installation
 ------------
 
 * Clone Packer AEM `git clone https://github.com/shinesolutions/aem-test-suite.git`
-* Install [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/getting-started)
+* Install [PhantomJS](https://github.com/teampoltergeist/poltergeist/tree/v1.17.0#installing-phantomjs)
+* Run `make deps` to install dependencies
 
 Configuration
 -------------
