@@ -15,4 +15,10 @@ describe 'Publish-Dispatcher', type: :feature do
     visit '/'
     expect(response_headers['X-Frame-Options']).to eq('SAMEORIGIN')
   end
+
+  it 'should not be able to access Publish pages as site visitor' do
+  end
+
+  it 'should not be able to invalidate Dispatcher cache' do
+  end
 end
