@@ -19,12 +19,12 @@ describe 'Publish-Dispatcher', type: :feature do
   end
 
   it 'should not be able to access Publish pages as site visitor' do
-    Dir.chdir(File.dirname(__FILE__))
-    secure_urls=File.readlines("secure_public_routes.txt")
+    secure_urls=File.readlines("security/secure_public_routes.txt")
     #check each url
     secure_urls.each do |url|
       visit url
       expect(page.status_code).to eq(404)
+    end
   end
 
   it 'should not be able to invalidate Dispatcher cache' do
