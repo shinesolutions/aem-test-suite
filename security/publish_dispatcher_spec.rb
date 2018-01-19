@@ -19,8 +19,8 @@ describe 'Publish-Dispatcher', type: :feature do
   end
 
   it 'should not be able to access Publish pages as site visitor' do
-    secure_urls=File.readlines("security/secure_public_routes.txt")
-    #check each url
+    secure_urls = File.readlines('security/secure_public_routes.txt')
+    # check each url
     secure_urls.each do |url|
       visit url
       expect(page.status_code).to eq(404)
@@ -28,8 +28,9 @@ describe 'Publish-Dispatcher', type: :feature do
   end
 
   it 'should not be able to invalidate Dispatcher cache' do
-    #set http headers to invalidate
-    Capybara.current_session.driver.add_headers({'CQ-Handle' => '/content','CQ-Path' => '/content'})
+    # set http headers to invalidate cache
+    headers = { 'CQ-Handle' => '/content', 'CQ-Path' => '/content' }
+    Capybara.current_session.driver.add_headers(headers)
     visit('/dispatcher/invalidate.cache')
     expect(page.status_code).to eq(404)
   end
