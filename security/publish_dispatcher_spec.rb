@@ -18,13 +18,16 @@ describe 'Publish-Dispatcher', type: :feature do
     expect(response_headers['X-Frame-Options']).to eq('SAMEORIGIN')
   end
 
-  it 'should prevent access to secure routes' do
+  it 'should not be able to access Publish pages as site visitor' do
     Dir.chdir(File.dirname(__FILE__))
     secure_urls=File.readlines("secure_public_routes.txt")
     #check each url
     secure_urls.each do |url|
       visit url
       expect(page.status_code).to eq(404)
-    end
+  end
+
+  it 'should not be able to invalidate Dispatcher cache' do
+
   end
 end
