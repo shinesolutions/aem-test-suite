@@ -28,6 +28,9 @@ describe 'Publish-Dispatcher', type: :feature do
   end
 
   it 'should not be able to invalidate Dispatcher cache' do
-
+    #set http headers to invalidate
+    Capybara.current_session.driver.add_headers({'CQ-Handle' => '/content','CQ-Path' => '/content'})
+    visit('/dispatcher/invalidate.cache')
+    expect(page.status_code).to eq(404)
   end
 end
