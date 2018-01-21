@@ -23,6 +23,10 @@ describe 'Publish-Dispatcher', type: :feature do
     # check each url
     secure_urls.each do |url|
       visit url
+      # check if its a redirect
+      visit response_headers['Location'] if response_headers.key?('Location')
+      # wait for page load
+      page.has_content?('.+')
       expect(page.status_code).to eq(404)
     end
   end
@@ -32,6 +36,6 @@ describe 'Publish-Dispatcher', type: :feature do
     headers = { 'CQ-Handle' => '/content', 'CQ-Path' => '/content' }
     Capybara.current_session.driver.add_headers(headers)
     visit('/dispatcher/invalidate.cache')
-    expect(page.status_code).to eq(404)
+    expect(page.status_code).to eq(403)
   end
 end
