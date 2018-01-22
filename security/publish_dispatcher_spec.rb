@@ -1,7 +1,6 @@
 require_relative '../spec_helper'
 
 describe 'Publish-Dispatcher', type: :feature do
-  # urlFile=File.new('secure_public_urls.txt','r');
 
   before :each do
     @conf = read_config
