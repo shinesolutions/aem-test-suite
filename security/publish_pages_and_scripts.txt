@@ -44,3 +44,7 @@
 /content.rss.xml
 /content.feed.html
 /content/add_valid_page.html?debug=layout
+/etc/replication.xml
+/etc/replication.infinity.json
+/libs/opensocial/proxy
+/etc/reports

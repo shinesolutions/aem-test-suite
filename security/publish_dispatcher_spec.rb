@@ -28,6 +28,13 @@ describe 'Publish-Dispatcher', type: :feature do
     end
   end
 
+  it 'should deny access to root directories of /etc and /libs' do
+    visit '/etc/'
+    expect(page.status_code).to eq(404)
+    visit '/libs/'
+    expect(page.status_code).to eq(404)
+  end
+
   it 'should not be able to invalidate Dispatcher cache' do
     # set http headers to invalidate cache
     headers = { 'CQ-Handle' => '/content', 'CQ-Path' => '/content' }
