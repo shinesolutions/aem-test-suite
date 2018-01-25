@@ -10,10 +10,12 @@ describe 'Publish', type: :feature do
     # use aem api calls
     aem = @aem_publish.aem
     begin
-      aem.get_agents('publish')
+      result = aem.get_agents('publish')
     rescue RubyAem::Error => error
       # response should be unauthorized
       expect(error.result.response.status_code).to eq(401)
     end
+    # no result due to error raised
+    expect(result).to eq(nil)
   end
 end

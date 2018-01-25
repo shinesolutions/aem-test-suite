@@ -10,10 +10,12 @@ describe 'Author', type: :feature do
     # use aem api calls
     aem = @aem_author.aem
     begin
-      aem.get_agents('author')
+      result = aem.get_agents('author')
     rescue RubyAem::Error => error
       # response should be unauthorized
       expect(error.result.response.status_code).to eq(401)
     end
+    # no result due to error raised
+    expect(result).to eq(nil)
   end
 end
