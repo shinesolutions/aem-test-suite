@@ -9,6 +9,14 @@ def read_config
   YAML.load_file('conf.yaml')
 end
 
+def init_poltergeist_client(conf)
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, js_errors: false)
+  end
+  Capybara.current_driver = :poltergeist
+  Capybara.app_host = "#{conf['protocol']}://#{conf['host']}:#{conf['port']}"
+end
+
 def init_author_client(conf)
   RubyAem::Aem.new(
     username: conf['username'] || 'admin',
@@ -35,7 +43,6 @@ def init_dispatcher_client(conf)
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js_errors: false)
   end
-
   Capybara.current_driver = :poltergeist
   Capybara.app_host = "#{conf['protocol']}://#{conf['host']}:#{conf['port']}"
 end

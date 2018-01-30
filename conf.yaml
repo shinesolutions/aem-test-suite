@@ -1,6 +1,8 @@
 ---
-
 aem:
+  stack_prefix: mblochaem63
+  topicarn: arn:aws:sns:ap-southeast-2:918473058104:mblochaem63-AemStackManager
+  component: author-primary
   author:
     username: admin
     password: admin
