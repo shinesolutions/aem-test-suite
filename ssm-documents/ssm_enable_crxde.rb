@@ -23,22 +23,21 @@ describe 'Test functionallity of stack-manager', type: :feature do
 			publish_msg_id = sns_client_publish.message_id
 			cw_log_filter = publish_msg_id.gsub('-', ' ')
 			with_retries(:max_tries => 3, :base_sleep_seconds => 5.0, :max_sleep_seconds => 15.0) do|attempt_number|
-				puts "Check if message was executed by Lambda function: #{attempt_number}"
+				puts "Check if message was received by Lambda function: #{attempt_number}"
 				cw_sn_ev = @cw.filter_log_events({
 					log_group_name: "/aws/lambda/#{@conf['stack_prefix']}-AemStackManager",
 					filter_pattern: "#{cw_log_filter}",
 					limit: 1,
 				})
-				msg_arr = cw_sn_ev.events[0].message.split("\t")
-				msg = msg_arr[2]
+				cw_sn_ev = cw_sn_ev.events[0].message.split("\t")
 			end
 		end
 		it 'should check if lambda executed the message' do
-			msg_arr = cw_sn_ev.events[0].message.split("\t")
-			msg = msg_arr[2]
+                        msg = cw_sn_ev[2]
+			puts msg
 			with_retries(:max_tries => 3, :base_sleep_seconds => 10.0, :max_sleep_seconds => 30.0) do|attempt_number|
 				# Check if command was successfully sent
-				puts "Check sucessfully sent of message attempt: #{attempt_number}"
+				puts "Check if message was executed by Lambda function: #{attempt_number}"
 				cw_ssm = @cw.filter_log_events({
 					log_group_name: "/aws/lambda/#{@conf['stack_prefix']}-AemStackManager",
 					filter_pattern: "#{msg} calling ssm commands",
