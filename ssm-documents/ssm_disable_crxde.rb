@@ -51,7 +51,7 @@ describe 'Test functionallity of stack-manager', type: :feature do
 				init_poltergeist_client(@conf['author'])
 				page.driver.basic_authorize(@conf['author']['username'], @conf['author']['password'])
 				visit '/crx/server/crx.default/jcr:root/.1.json'
-				expect(page.status_code).to eq(200)
+				expect(page.status_code).to eq(404)
 			end
 		end
 	end
