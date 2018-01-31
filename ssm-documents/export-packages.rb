@@ -16,11 +16,12 @@ describe 'Test functionallity of stack-manager', type: :feature do
 		cw_sn_ev = @cw
 		it 'should publish a message to SNS' do
 			sns_client_publish = @sns_client.publish({
-				subject: "Test DisableCRXDE",
-				message: "{ \"default\": \"{ 'task': 'disable-crxde', 'stack_prefix': '#{@conf['stack_prefix']}', 'details': { 'component': '#{@component}' }}\"}",
+				subject: "Test export packages",
+				message: "{ \"default\": \"{ 'task': 'export-packages', 'stack_prefix': '#{@conf['stack_prefix']}', 'details': { 'descriptor_file': '#{descriptor_file}' }}\"}",
 				message_structure: "json",
 			})
 			publish_msg_id = sns_client_publish.message_id
+			# Instead of looking into Cloudwatch to determine if the command was successfully sent. It might be better to look into the DynamoDB to see if the command failed or succeed
 			cw_log_filter = publish_msg_id.gsub('-', ' ')
 			with_retries(:max_tries => 3, :base_sleep_seconds => 5.0, :max_sleep_seconds => 15.0) do|attempt_number|
 				puts "Check if message was received by Lambda function: #{attempt_number}"
@@ -45,14 +46,5 @@ describe 'Test functionallity of stack-manager', type: :feature do
 				})
 			end
 		end	
-		it 'Check if CRXDE is Disabled' do
-			with_retries(:max_tries => 3, :base_sleep_seconds => 15.0, :max_sleep_seconds => 30.0) do|attempt_number|
-				puts "Check if CRXDE is Disabled: #{attempt_number}"
-				init_poltergeist_client(@conf['author'])
-				page.driver.basic_authorize(@conf['author']['username'], @conf['author']['password'])
-				visit '/crx/server/crx.default/jcr:root/.1.json'
-				expect(page.status_code).to eq(404)
-			end
-		end
 	end
 end

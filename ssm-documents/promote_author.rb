@@ -16,8 +16,8 @@ describe 'Test functionallity of stack-manager', type: :feature do
 		cw_sn_ev = @cw
 		it 'should publish a message to SNS' do
 			sns_client_publish = @sns_client.publish({
-				subject: "Test EnableCRXDE",
-				message: "{ \"default\": \"{ 'task': 'enable-crxde', 'stack_prefix': '#{@conf['stack_prefix']}', 'details': { 'component': '#{@component}' }}\"}",
+				subject: "Test Promote Author",
+				message: "{ \"default\": \"{ 'task': 'promote-author', 'stack_prefix': '#{@conf['stack_prefix']}'}\"}",
 				message_structure: "json",
 			})
 			publish_msg_id = sns_client_publish.message_id
@@ -45,14 +45,5 @@ describe 'Test functionallity of stack-manager', type: :feature do
 				})
 			end
 		end	
-		it 'Check if CRXDE is enabled' do
-			with_retries(:max_tries => 3, :base_sleep_seconds => 15.0, :max_sleep_seconds => 30.0) do|attempt_number|
-				puts "Check if CRXDE is enabled: #{attempt_number}"
-				init_poltergeist_client(@conf['author'])
-				page.driver.basic_authorize(@conf['author']['username'], @conf['author']['password'])
-				visit '/crx/server/crx.default/jcr:root/.1.json'
-				expect(page.status_code).to eq(200)
-			end
-		end
 	end
 end
