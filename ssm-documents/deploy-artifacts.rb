@@ -1,6 +1,6 @@
 require_relative '../spec_helper' 
 require 'aws-sdk-sns'
-require 'aws-sdk-cloudwatchlogs'
+require 'aws-sdk-dynamodb'
 require 'phantomjs'
 require 'retries'
 
@@ -8,43 +8,73 @@ describe 'Test functionallity of stack-manager', type: :feature do
 	before :all do
 		@conf = read_config['aem']
 		@sns_client = Aws::SNS::Topic.new(@conf['topicarn'])
-		@cw = Aws::CloudWatchLogs::Client.new
+                @dynamodb = Aws::DynamoDB::Client.new()
+		@stack_prefix = @conf['stack_prefix']
 		#@component = ARGV
-		@component = 'author-primary'
+		@component = 'publish'
 	end
-	context 'Publish a message to SNS and check for execution ' do
-		cw_sn_ev = @cw
+	context 'Publish a message to SNS and check execution status' do
+		# Need to declare strings as empty strings here, so they can passed through further tests
+		publish_msg_id = 'empty'
+		command_id = 'empty'
 		it 'should publish a message to SNS' do
 			sns_client_publish = @sns_client.publish({
-				subject: "Test deploy artifacts",
-				message: "{ \"default\": \"{ 'task': 'deploy-artifacts', 'stack_prefix': '#{@conf['stack_prefix']}', 'details': { 'descriptor_file': '#{descriptor_file}' }}\"}",
+				subject: "Test Deploy Artifacts",
+                                message: "{ \"default\": \"{ 'task': 'deploy-artifacts', 'stack_prefix': '#{@conf['stack_prefix']}', 'details': { 'descriptor_file': '#{descriptor_file}' }}\"}",
 				message_structure: "json",
 			})
 			publish_msg_id = sns_client_publish.message_id
-			# Instead of looking into Cloudwatch to determine if the command was successfully sent. It might be better to look into the DynamoDB to see if the command failed or succeed
-			cw_log_filter = publish_msg_id.gsub('-', ' ')
+			expect(publish_msg_id).not_to be_empty
+		end
+
+		it 'should lookup if command was received ' do
 			with_retries(:max_tries => 3, :base_sleep_seconds => 5.0, :max_sleep_seconds => 15.0) do|attempt_number|
 				puts "Check if message was received by Lambda function: #{attempt_number}"
-				cw_sn_ev = @cw.filter_log_events({
-					log_group_name: "/aws/lambda/#{@conf['stack_prefix']}-AemStackManager",
-					filter_pattern: "#{cw_log_filter}",
-					limit: 1,
+			        dynamodb_out = @dynamodb.scan( {
+					table_name: "#{@stack_prefix}-AemStackManagerTable",
+					attributes_to_get: ['command_id'],
+					scan_filter: {
+						"message_id" => {
+							attribute_value_list: [publish_msg_id],
+							comparison_operator: "EQ",
+						},
+					},
 				})
-				cw_sn_ev = cw_sn_ev.events[0].message.split("\t")
+				command_id = dynamodb_out.items[0]["command_id"]
+				expect(command_id).not_to be_empty
 			end
 		end
-		it 'should check if lambda executed the message' do
-                        msg = cw_sn_ev[2]
-			puts msg
-			with_retries(:max_tries => 3, :base_sleep_seconds => 10.0, :max_sleep_seconds => 30.0) do|attempt_number|
-				# Check if command was successfully sent
+
+                it 'should lookup if command was executed' do
+			with_retries(:max_tries => 3, :base_sleep_seconds => 5.0, :max_sleep_seconds => 15.0) do|attempt_number|
 				puts "Check if message was executed by Lambda function: #{attempt_number}"
-				cw_ssm = @cw.filter_log_events({
-					log_group_name: "/aws/lambda/#{@conf['stack_prefix']}-AemStackManager",
-					filter_pattern: "#{msg} calling ssm commands",
-					limit: 1,
+				dynamodb_out = @dynamodb.query ({ 
+					table_name: "#{@stack_prefix}-AemStackManagerTable",
+					attributes_to_get: ['state'],
+					key_conditions: {
+						"command_id" => {
+							attribute_value_list: [command_id],
+                                                        comparison_operator: "EQ",
+						},
+					},
+					query_filter: {
+                                                "state" => {
+							# Valied states are Pending, Success, Failed
+                                                        attribute_value_list: ['Pending'],
+                                                        comparison_operator: "NE",
+                                                },
+                                        },
 				})
+				ssm_state = dynamodb_out.items[0]["state"]
 			end
-		end	
+			# Expect State Success
+			expect(ssm_state).to eq("Success")
+		end
 	end
+	#context 'Check if artifacts are deployed now ' do
+		#it 'should Check if artifacts are deployed' do
+			#with_retries(:max_tries => 3, :base_sleep_seconds => 15.0, :max_sleep_seconds => 30.0) do|attempt_number|
+			#end
+		#end
+	#end
 end
