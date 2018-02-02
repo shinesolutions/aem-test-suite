@@ -7,20 +7,22 @@ require 'retries'
 describe 'Test functionallity of stack-manager', type: :feature do
 	before :all do
 		@conf = read_config['aem']
+                @stack_prefix = @conf['stack_prefix']
+                @conf_instance = @conf['author-primary']
+                @component = @conf_instance['component']
+
 		@sns_client = Aws::SNS::Topic.new(@conf['topicarn'])
                 @dynamodb = Aws::DynamoDB::Client.new()
-		@stack_prefix = @conf['stack_prefix']
-		#@component = ARGV
-		@component = 'publish'
 	end
 	context 'Publish a message to SNS and check execution status' do
 		# Need to declare strings as empty strings here, so they can passed through further tests
 		publish_msg_id = 'empty'
 		command_id = 'empty'
+		ssm_state = 'empty'
 		it 'should publish a message to SNS' do
 			sns_client_publish = @sns_client.publish({
 				subject: "Test Live Snapshot",
-                                message: "{ \"default\": \"{ 'task': 'live-snapshot', 'stack_prefix': '#{@conf['stack_prefix']}', 'details': { 'component': '#{@component}' }}\"}",
+                                message: "{ \"default\": \"{ 'task': 'live-snapshot', 'stack_prefix': '#{@stack_prefix}', 'details': { 'component': '#{@component}' }}\"}",
 				message_structure: "json",
 			})
 			publish_msg_id = sns_client_publish.message_id
@@ -46,7 +48,7 @@ describe 'Test functionallity of stack-manager', type: :feature do
 		end
 
                 it 'should lookup if command was executed' do
-			with_retries(:max_tries => 3, :base_sleep_seconds => 5.0, :max_sleep_seconds => 15.0) do|attempt_number|
+			with_retries(:max_tries => 20, :base_sleep_seconds => 30.0, :max_sleep_seconds => 60.0) do|attempt_number|
 				puts "Check if message was executed by Lambda function: #{attempt_number}"
 				dynamodb_out = @dynamodb.query ({ 
 					table_name: "#{@stack_prefix}-AemStackManagerTable",

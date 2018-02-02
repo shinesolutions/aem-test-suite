@@ -7,16 +7,18 @@ require 'retries'
 describe 'Test functionallity of stack-manager', type: :feature do
 	before :all do
 		@conf = read_config['aem']
+                @stack_prefix = @conf['stack_prefix']
+                @conf_instance = @conf['author-primary']
+                @component = @conf_instance['component']
+
 		@sns_client = Aws::SNS::Topic.new(@conf['topicarn'])
                 @dynamodb = Aws::DynamoDB::Client.new()
-		@stack_prefix = @conf['stack_prefix']
-		#@component = ARGV
-		@component = 'publish'
 	end
 	context 'Publish a message to SNS and check execution status' do
 		# Need to declare strings as empty strings here, so they can passed through further tests
 		publish_msg_id = 'empty'
 		command_id = 'empty'
+		ssm_state = 'empty'
 		it 'should publish a message to SNS' do
 			sns_client_publish = @sns_client.publish({
 				subject: "Test EnableCRXDE",
@@ -67,7 +69,6 @@ describe 'Test functionallity of stack-manager', type: :feature do
 				})
 				ssm_state = dynamodb_out.items[0]["state"]
 			end
-			# Expect State Success
 			expect(ssm_state).to eq("Success")
 		end
 	end
@@ -75,8 +76,8 @@ describe 'Test functionallity of stack-manager', type: :feature do
 		it 'should Check if CRXDE is enabled' do
 			with_retries(:max_tries => 3, :base_sleep_seconds => 15.0, :max_sleep_seconds => 30.0) do|attempt_number|
 				puts "Check if CRXDE is enabled: #{attempt_number}"
-				init_poltergeist_client(@conf['author'])
-				page.driver.basic_authorize(@conf['author']['username'], @conf['author']['password'])
+				init_poltergeist_client(@conf_instance)
+				page.driver.basic_authorize(@conf_instance['username'], @conf_instance['password'])
 				visit '/crx/server/crx.default/jcr:root/.1.json'
 				expect(page.status_code).to eq(200)
 			end

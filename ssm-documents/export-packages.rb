@@ -7,20 +7,22 @@ require 'retries'
 describe 'Test functionallity of stack-manager', type: :feature do
 	before :all do
 		@conf = read_config['aem']
+                @stack_prefix = @conf['stack_prefix']
+                @conf_instance = @conf['author-primary']
+                @component = @conf_instance['component']
+
 		@sns_client = Aws::SNS::Topic.new(@conf['topicarn'])
                 @dynamodb = Aws::DynamoDB::Client.new()
-		@stack_prefix = @conf['stack_prefix']
-		#@component = ARGV
-		@component = 'publish'
 	end
 	context 'Publish a message to SNS and check execution status' do
 		# Need to declare strings as empty strings here, so they can passed through further tests
 		publish_msg_id = 'empty'
 		command_id = 'empty'
+		ssm_state = 'empty'
 		it 'should publish a message to SNS' do
 			sns_client_publish = @sns_client.publish({
 				subject: "Test Export Packages",
-                                message: "{ \"default\": \"{ 'task': 'export-packages', 'stack_prefix': '#{@conf['stack_prefix']}', 'details': { 'descriptor_file': '#{descriptor_file}' }}\"}",
+                                message: "{ \"default\": \"{ 'task': 'export-packages', 'stack_prefix': '#{@stack_prefix}', 'details': { 'descriptor_file': '#{descriptor_file}' }}\"}",
 				message_structure: "json",
 			})
 			publish_msg_id = sns_client_publish.message_id

@@ -1,15 +1,23 @@
 ---
 aem:
-  stack_prefix: mblochaem63
-  topicarn: arn:aws:sns:ap-southeast-2:918473058104:mblochaem63-AemStackManager
-  component: author-primary
-  author:
+  stack_prefix: michaelb-aem63
+  topicarn: arn:aws:sns:ap-southeast-2:918473058104:michaelb-aem63-AemStackManager
+  author-primary:
     username: admin
     password: admin
     protocol: http
     host: localhost
     port: 4502
     debug: false
+    component: author-primary
+  author-standby:
+    username: admin
+    password: admin
+    protocol: http
+    host: localhost
+    port: 4502
+    debug: false
+    component: author-primary
   publish:
     username: admin
     password: admin
