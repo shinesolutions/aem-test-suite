@@ -9,5 +9,5 @@ gem 'retries', '~> 0.0.5'
 gem 'rubocop', require: false
 gem 'ruby_aem'
 gem 'aws-sdk-sns'
-gem 'aws-sdk-cloudwatchlogs'
+gem 'aws-sdk-dynamodb'
 gem 'phantomjs', :require => 'phantomjs/poltergeist'

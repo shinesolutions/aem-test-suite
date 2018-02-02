@@ -1,7 +1,7 @@
 ---
 aem:
-  stack_prefix: michaelb-aem63
-  topicarn: arn:aws:sns:ap-southeast-2:918473058104:michaelb-aem63-AemStackManager
+  stack_prefix: aem-stack-manager
+  topicarn: arn:aws:sns:[AWS_REGION]:[ACCOUNT_ID]:[SNS_TOPIC_NAME]
   author-primary:
     username: admin
     password: admin
@@ -17,7 +17,7 @@ aem:
     host: localhost
     port: 4502
     debug: false
-    component: author-primary
+    component: author-standby
   publish:
     username: admin
     password: admin
@@ -25,6 +25,7 @@ aem:
     host: localhost
     port: 4503
     debug: false
+    component: publish
   dispatcher:
     protocol: http
     host: localhost
