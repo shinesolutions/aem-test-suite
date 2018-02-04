@@ -4,7 +4,6 @@ describe 'Publish', type: :feature do
   before :each do
     @conf = read_config
     @aem_publish = init_publish_client(@conf['aem']['publish'])
-
   end
 
   it 'should not be able to login using default admin password' do
