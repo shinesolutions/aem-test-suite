@@ -5,19 +5,19 @@ aem:
     username: admin
     password: admin
     protocol: http
-    host: 13.54.251.173
+    host: localhost
     port: 4502
     debug: false
   publish:
     username: admin
     password: admin
     protocol: http
-    host: 13.54.251.173
+    host: localhost
     port: 4503
     debug: false
   dispatcher:
     protocol: http
-    host: 13.54.251.173
+    host: localhost
     port: 80
 
 tmp_dir: /tmp/shinesolutions/aem-aws-stack-builder
