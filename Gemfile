@@ -8,6 +8,5 @@ gem 'rspec'
 gem 'retries', '~> 0.0.5'
 gem 'rubocop', require: false
 gem 'ruby_aem'
-gem 'aws-sdk-sns'
-gem 'aws-sdk-dynamodb'
+#gem 'ruby_aem_aws'
 gem 'phantomjs', :require => 'phantomjs/poltergeist'

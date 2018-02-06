@@ -3,7 +3,7 @@ require_relative '../spec_helper'
 describe 'Content publishing', type: :feature do
   before :each do
     @conf = read_config
-    @aem_author = init_author_client(@conf['aem']['author'])
+    @aem_author = init_author_client(@conf['aem']['author-primary'])
     init_dispatcher_client(@conf['aem']['dispatcher'])
   end
 

@@ -4,6 +4,7 @@ require 'net/http'
 require 'ruby_aem'
 require 'yaml'
 require 'capybara/poltergeist'
+require 'phantomjs'
 
 def read_config
   YAML.load_file('conf.yaml')
