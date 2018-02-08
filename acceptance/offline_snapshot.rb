@@ -5,14 +5,14 @@ describe 'Test functionallity of stack-manager', type: :feature do
   before :all do
     conf = read_config['aem']
     stack_prefix = conf['stack_prefix']
-    topic_arn = conf['topicarn']
+    topic_arn = conf['backuparn']
     @ssm_command = RubyAemAws::Component::StackManagerTest.new(topic_arn, stack_prefix)
-    @conf_instance = conf['author-publish-dispatcher']
-    @task = 'live-snapshot'
+    @conf_instance = conf['author-primary']
+    @task = 'offline-snapshot'
     @parameters = { component: @conf_instance['component'] }
   end
   context 'Check if ssm command is successfull' do
-    it 'should create a live snapshot' do
+    it 'should take a offline snapshot' do
       result = @ssm_command.check(@task, @parameters)
       expect(result).to be == 'Success'
     end

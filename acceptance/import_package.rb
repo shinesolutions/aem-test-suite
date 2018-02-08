@@ -7,17 +7,21 @@ describe 'Test functionallity of stack-manager', type: :feature do
     stack_prefix = conf['stack_prefix']
     topic_arn = conf['topicarn']
     @ssm_command = RubyAemAws::Component::StackManagerTest.new(topic_arn, stack_prefix)
-    @conf_instance = conf['author-publish-dispatcher']
-    @task = 'live-snapshot'
-    @parameters = { component: @conf_instance['component'] }
+    @conf_instance = conf['author-primary']
+    @task = 'export-package'
+    @parameters = { component: @conf_instance['component'],
+                    source_stack_prefix: 'source_stack_prefix',
+                    package_group: 'package_group',
+                    package_name: 'package_name',
+                    package_datestamp: 'package_datestamp' }
   end
   context 'Check if ssm command is successfull' do
-    it 'should create a live snapshot' do
+    it 'should import a package' do
       result = @ssm_command.check(@task, @parameters)
       expect(result).to be == 'Success'
     end
 
-    it 'should check if snapshot was taken' do
+    it 'should check if packages are exported' do
     end
   end
 end

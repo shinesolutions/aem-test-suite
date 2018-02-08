@@ -8,16 +8,24 @@ describe 'Test functionallity of stack-manager', type: :feature do
     topic_arn = conf['topicarn']
     @ssm_command = RubyAemAws::Component::StackManagerTest.new(topic_arn, stack_prefix)
     @conf_instance = conf['author-primary']
-    @task = 'promote-author'
-    @parameters = { component: @conf_instance['component'] }
+    @task = 'deploy-artifact'
+    @parameters = { component: @conf_instance['component'],
+                    source:     's3://aem-stack-builder/library/aem-helloworld-content-0.0.1-SNAPSHOT.zip',
+                    group:      'shinesolutions',
+                    name:       'aem-helloworld-content',
+                    version:    '0.0.1-SNAPSHOT',
+                    replicate:  'true',
+                    activate:   'false',
+                    force:      'true' }
   end
+
   context 'Check if ssm command is successfull' do
-    it 'should promote the author' do
+    it 'should deploy artifact' do
       result = @ssm_command.check(@task, @parameters)
       expect(result).to be == 'Success'
     end
 
-    it 'should check if author is promoted' do
+    it 'should check if artifact is deployed' do
     end
   end
 end

@@ -2,6 +2,15 @@
 aem:
   stack_prefix: aem-stack-manager
   topicarn: arn:aws:sns:[AWS_REGION]:[ACCOUNT_ID]:[SNS_TOPIC_NAME]
+  author-publish-dispatcher:
+    username: admin
+    password: admin
+    protocol: http
+    host: localhost
+    port: 4502
+    debug: false
+    component: author-publish-dispatcher
+
   author-primary:
     username: admin
     password: admin

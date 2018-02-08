@@ -7,5 +7,4 @@ describe 'Author', type: :feature do
 
   it 'should not be able to login using default admin password' do
   end
-
 end
