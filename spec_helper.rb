@@ -5,9 +5,27 @@ require 'ruby_aem'
 require 'yaml'
 require 'capybara/poltergeist'
 require 'phantomjs'
+require 'aws-sdk-resources'
+#require 'aws-sdk-sns'
+#require 'aws-sdk-dynamodb'
+require_relative '../ruby_aem_aws/lib/ruby_aem_aws/component/stack_manager'
+require_relative 'spec/helpers/session_helper'
+
+RSpec.configure do |config|
+  config.include(Features::StackManagerTestHelper)
+end
 
 def read_config
   YAML.load_file('conf.yaml')
+end
+
+def init_stack_manager_config()
+  @aem_conf = read_config['aem']
+  @sm_conf = @aem_conf['stack-manager']
+  conf_instance = @aem_conf['author-primary']
+  @user = conf_instance['username']
+  @password = conf_instance['password']
+  init_poltergeist_client(conf_instance)
 end
 
 def init_poltergeist_client(conf)

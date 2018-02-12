@@ -7,5 +7,6 @@ gem 'rake'
 gem 'rspec'
 gem 'rubocop', require: false
 gem 'ruby_aem'
+gem 'aws-sdk-resources'
 # gem 'ruby_aem_aws'
 gem 'phantomjs', require: 'phantomjs/poltergeist'
