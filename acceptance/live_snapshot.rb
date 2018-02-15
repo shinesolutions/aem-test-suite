@@ -1,23 +1,21 @@
 require_relative '../spec_helper'
-require_relative '../../ruby_aem_aws/lib/ruby_aem_aws/component/stack_manager'
 
-describe 'Test functionallity of stack-manager', type: :feature do
-  before :all do
-    conf = read_config['aem']
-    stack_prefix = conf['stack_prefix']
-    topic_arn = conf['topicarn']
-    @ssm_command = RubyAemAws::Component::StackManagerTest.new(topic_arn, stack_prefix)
-    @conf_instance = conf['author-publish-dispatcher']
-    @task = 'live-snapshot'
-    @parameters = { component: @conf_instance['component'] }
+describe 'AEM', type: :feature do
+  let(:task) { 'live-snapshot' }
+  let(:parameters) { { component: @aem_component } }
+
+  before do
+    init_stack_manager_config
+    aem_sm_conn
   end
-  context 'Check if ssm command is successfull' do
-    it 'should create a live snapshot' do
-      result = @ssm_command.check(@task, @parameters)
-      expect(result).to be == 'Success'
-    end
 
-    it 'should check if snapshot was taken' do
+  describe 'when no live snapshots exists' do
+    it { expect(live_snapshot_existens).to be_falsey }
+    context 'when creating live snapshot' do
+      it { expect(execute(task, parameters)).to be_truthy }
     end
+  end
+  describe 'when created live snapshot exist' do
+    it { expect(live_snapshot_existens).to be_truthy }
   end
 end
