@@ -32,11 +32,10 @@ module Features
     end
     # Not working yet... Check for artifacts is missing. Package check is working for artifact and artifacts.
 
-    def deploy_artifacts_existens(descriptor_file, existens)
+    def deploy_artifacts_existens(descriptor_file)
       file = Tempfile.new('descriptor_file')
       @aem_stack_manager_conn.s3_download(@s3_bucket_name, "#{@stack_prefix}/#{descriptor_file}", file)
       deploy_artifacts_descriptor_file = file.read
-      file.unlink
       deploy_artifacts_hash_map = JSON.parse(deploy_artifacts_descriptor_file)
       exit_code = 0
       if deploy_artifacts_hash_map[@aem_component].include?('packages').eql? TRUE
@@ -45,9 +44,6 @@ module Features
         while ii < i
           resp_code = page_package(deploy_artifacts_hash_map[@aem_component]['packages'][ii]['group'], deploy_artifacts_hash_map[@aem_component]['packages'][ii]['name'], deploy_artifacts_hash_map[@aem_component]['packages'][ii]['version'])
           exit_code += 1 unless resp_code.eql? 200
-          if existens.eql? true
-            puts "Error: Package #{deploy_artifacts_hash_map[@aem_component]['packages'][ii]['name']} not installed" unless exit_code.eql? 0
-          end
           ii += 1
         end
       end
@@ -57,9 +53,6 @@ module Features
         while ii < i
           resp_code = page_package(deploy_artifacts_hash_map[@aem_component]['artifacts'][ii]['group'], deploy_artifacts_hash_map[@aem_component]['artifacts'][ii]['name'], deploy_artifacts_hash_map[@aem_component]['artifacts'][ii]['version'])
           exit_code += 1 unless resp_code == 200
-          if existens.eql? true
-            puts "Error: ARtifact #{deploy_artifacts_hash_map[@aem_component]['artifacts'][ii]['name']} not installed" unless exit_code.eql? 0
-          end
           ii += 1
         end
       end

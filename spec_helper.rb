@@ -9,7 +9,7 @@ require 'tempfile'
 require 'ruby_aem_aws'
 require_relative 'spec/helpers/stack_manager_test_helper'
 require_relative 'spec/helpers/session_helper'
-#require_relative '../ruby_aem_aws/lib/ruby_aem_aws'
+# require_relative '../ruby_aem_aws/lib/ruby_aem_aws'
 
 RSpec.configure do |config|
   config.include(Features::StackManagerTestHelper)
