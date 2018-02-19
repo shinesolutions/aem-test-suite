@@ -1,10 +1,10 @@
 ---
 aem:
-  stack_prefix: michaelb-aem63
+  stack_prefix: aem-stack-full-set
   stack-manager:
-      sns_topic: arn:aws:sns:REGION:ACCOUNTID:Sack-Prefix-AemStackManager
-      dynamodb_tablename: Stack-Prefix-AemStackManagerTable
-  s3_bucket: aem-stack-builder
+      sns_topic: ARN_SNS_TOPIC
+      dynamodb_tablename: aem-stack-manager-AemStackManagerTable
+      s3_bucket: aem-stack-builder
   author-publish-dispatcher:
     username: admin
     password: admin

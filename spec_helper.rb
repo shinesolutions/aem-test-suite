@@ -1,3 +1,17 @@
+# Copyright 2018 Shine Solutions
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 require 'capybara/rspec'
 require 'fileutils'
 require 'net/http'
@@ -6,10 +20,12 @@ require 'yaml'
 require 'capybara/poltergeist'
 require 'phantomjs'
 require 'tempfile'
-require 'ruby_aem_aws'
-require_relative 'spec/helpers/stack_manager_test_helper'
-require_relative 'spec/helpers/session_helper'
-# require_relative '../ruby_aem_aws/lib/ruby_aem_aws'
+#require 'ruby_aem_aws'
+require_relative '../ruby_aem_aws/lib/ruby_aem_aws'
+Dir.glob("spec/**/*.rb").each do |req_files|
+  require_relative req_files
+end
+
 
 RSpec.configure do |config|
   config.include(Features::StackManagerTestHelper)
@@ -20,16 +36,24 @@ def read_config
   YAML.load_file('conf.yaml')
 end
 
+def init_config
+  @aem_conf = read_config['aem']
+  @stack_prefix = @aem_conf['stack_prefix']
+  aem_client = RubyAemAws::AemAws.new(conf = { aws_profile: 'sandpit'} )
+  @aem_stack_manager_conn = aem_client.stack_manager(@stack_prefix)
+  @aem_full_set = aem_client.full_set(@stack_prefix)
+  aem_sm_conf = @aem_conf['stack-manager']
+  @dynamodb_tablename = aem_sm_conf['dynamodb_tablename']
+  @s3_bucket_name = aem_sm_conf['s3_bucket']
+  @sns_topic = aem_sm_conf['sns_topic']
+end
+
 def init_stack_manager_config
-  aem_conf = read_config['aem']
-  conf_instance = aem_conf['author-primary']
-  @stack_prefix = aem_conf['stack_prefix']
-  @aem_sm_conf = aem_conf['stack-manager']
-  @s3_bucket_name = aem_conf['s3_bucket']
-  @aem_component = conf_instance['component']
-  @user = conf_instance['username']
-  @password = conf_instance['password']
-  init_poltergeist_client(conf_instance)
+  @conf_instance = @aem_conf["#{@instance.descriptor.ec2.component}"]
+  #@aem_component = conf_instance['component']
+  @user = @conf_instance['username']
+  @password = @conf_instance['password']
+  init_poltergeist_client(@conf_instance)
 end
 
 def init_poltergeist_client(conf)
