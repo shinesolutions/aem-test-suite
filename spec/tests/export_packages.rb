@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require_relative '../spec_helper'
+require_relative '../../spec_helper'
 
 shared_examples_for 'exporting packages' do
   let(:task) { 'export-packages' }

@@ -16,9 +16,8 @@ module Features
   module StackManagerTestHelper
 
     def execute(task, parameters)
-      init_ruby_aem_aws
       # Should be at least the same, like timeout of cmd execution
-      retry_opts = { max_tries: 3,
+      retry_opts = { max_tries: 120,
                      base_sleep_seconds: 5.0,
                      max_sleep_seconds: 15.5 }
       scan_retry_opts = retry_opts
@@ -40,7 +39,6 @@ module Features
       instance = 0
       instance += 1  unless @aem_full_set.author.author_primary.healthy?.eql? false
       instance += 1  unless @aem_full_set.author.author_standby.healthy?.eql? false
-      puts instance
       return true unless instance < instances_count
     end
 
