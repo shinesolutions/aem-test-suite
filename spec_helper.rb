@@ -20,8 +20,8 @@ require 'yaml'
 require 'capybara/poltergeist'
 require 'phantomjs'
 require 'tempfile'
-#require 'ruby_aem_aws'
-require_relative '../ruby_aem_aws/lib/ruby_aem_aws'
+require 'ruby_aem_aws'
+#require_relative '../ruby_aem_aws/lib/ruby_aem_aws'
 Dir.glob("spec/**/*.rb").each do |req_files|
   require_relative req_files
 end
