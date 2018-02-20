@@ -21,10 +21,9 @@ require 'capybara/poltergeist'
 require 'phantomjs'
 require 'tempfile'
 require 'ruby_aem_aws'
-Dir.glob("spec/**/*.rb").each do |req_files|
+Dir.glob('spec/**/*.rb').each do |req_files|
   require_relative req_files
 end
-
 
 RSpec.configure do |config|
   config.include(Features::StackManagerTestHelper)
@@ -38,7 +37,7 @@ end
 def init_config
   @aem_conf = read_config['aem']
   @stack_prefix = @aem_conf['stack_prefix']
-  aem_client = RubyAemAws::AemAws.new(conf = { aws_profile: 'sandpit'} )
+  aem_client = RubyAemAws::AemAws.new(aws_profile: 'sandpit')
   @aem_stack_manager_conn = aem_client.stack_manager(@stack_prefix)
   @aem_full_set = aem_client.full_set(@stack_prefix)
   aem_sm_conf = @aem_conf['stack-manager']
@@ -48,8 +47,7 @@ def init_config
 end
 
 def init_stack_manager_config
-  @conf_instance = @aem_conf["#{@instance.descriptor.ec2.component}"]
-  #@aem_component = conf_instance['component']
+  @conf_instance = @aem_conf[@instance.descriptor.ec2.component]
   @user = @conf_instance['username']
   @password = @conf_instance['password']
   init_poltergeist_client(@conf_instance)

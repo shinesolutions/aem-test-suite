@@ -14,7 +14,6 @@
 
 module Features
   module StackManagerTestHelper
-
     def execute(task, parameters)
       # Should be at least the same, like timeout of cmd execution
       retry_opts = { max_tries: 120,
@@ -31,8 +30,7 @@ module Features
       with_retries(query_retry_opts) do
         @state = @aem_stack_manager_conn.sm_resources.dyn_db_cmd_query(@dynamodb_tablename, @cmd_id)
       end
-
-        return TRUE unless @state.eql? 'Failed'
+      return TRUE unless @state.eql? 'Failed'
     end
 
     def author_instance_exist(instances_count)
@@ -56,14 +54,14 @@ module Features
     end
 
     def export_package_existens(package_group, package_name)
-      time =  Time.new
-      package_source = "backup/#{@stack_prefix}/#{package_group}/#{time.strftime("%Y/%m")}/#{package_name}-#{time.strftime("%Y%m%d")}-#{@instance.descriptor.ec2.component}.zip"
+      time = Time.new
+      package_source = "backup/#{@stack_prefix}/#{package_group}/#{time.strftime('%Y/%m')}/#{package_name}-#{time.strftime('%Y%m%d')}-#{@instance.descriptor.ec2.component}.zip"
       @aem_stack_manager_conn.sm_resources.s3_resource_object(@s3_bucket_name, package_source)
     end
 
     # Check for artifacts is not implemented yet
     def export_packages_existens(descriptor_file)
-      time =  Time.new
+      time = Time.new
       file = Tempfile.new('descriptor_file')
       @aem_stack_manager_conn.sm_resources.s3_download_object(@s3_bucket_name, "#{@stack_prefix}/#{descriptor_file}", file)
       export_packages_descriptor_file = file.read
@@ -75,7 +73,7 @@ module Features
         while ii < i
           package_group = export_packages_hash_map[@instance.descriptor.ec2.component]['packages'][ii]['group']
           package_name = export_packages_hash_map[@instance.descriptor.ec2.component]['packages'][ii]['name']
-          package_source = "backup/#{@stack_prefix}/#{package_group}/#{time.strftime("%Y/%m")}/#{package_name}-#{time.strftime("%Y%m%d")}-#{@instance.descriptor.ec2.component}.zip"
+          package_source = "backup/#{@stack_prefix}/#{package_group}/#{time.strftime('%Y/%m')}/#{package_name}-#{time.strftime('%Y%m%d')}-#{@instance.descriptor.ec2.component}.zip"
           existens = @aem_stack_manager_conn.sm_resources.s3_resource_object(@s3_bucket_name, package_source).exists?
           exit_code += 1 unless existens.eql? true
           ii += 1
@@ -94,7 +92,10 @@ module Features
         i = deploy_artifacts_hash_map[@instance.descriptor.ec2.component]['packages'].length
         ii = 0
         while ii < i
-          resp_code = page_package(deploy_artifacts_hash_map[@instance.descriptor.ec2.component]['packages'][ii]['group'], deploy_artifacts_hash_map[@instance.descriptor.ec2.component]['packages'][ii]['name'], deploy_artifacts_hash_map[@instance.descriptor.ec2.component]['packages'][ii]['version'])
+          package_group = deploy_artifacts_hash_map[@instance.descriptor.ec2.component]['packages'][ii]['group']
+          package_name = deploy_artifacts_hash_map[@instance.descriptor.ec2.component]['packages'][ii]['name']
+          package_version = deploy_artifacts_hash_map[@instance.descriptor.ec2.component]['packages'][ii]['version']
+          resp_code = page_package(package_group, package_name, package_version)
           exit_code += 1 unless resp_code.eql? 200
           ii += 1
         end

@@ -19,7 +19,7 @@ shared_examples_for 'instance to import a package' do
       source_stack_prefix: @instance.descriptor.stack_prefix,
       package_group: 'shinesolutions',
       package_name: 'aem-helloworld-content',
-      package_datestamp: Time.new.strftime("%Y%m") }
+      package_datestamp: Time.new.strftime('%Y%m') }
   }
 
   before do
@@ -30,13 +30,13 @@ shared_examples_for 'instance to import a package' do
     sign_out
   end
   describe 'import package', type: :feature do
-    context 'when package not exist' do
+    context 'should not exist' do
       it { expect(page_package(parameters[:package_group], parameters[:package_name], "#{parameters[:package_datestamp]}-#{@instance.descriptor.ec2.component}-latest")).to eql(404) }
     end
-    context 'when no package exist import', type: :feature do
+    context 'when no package exist', type: :feature do
       it { expect(execute(task, parameters)).to be_truthy }
     end
-    context 'when package exist', type: :feature do
+    context 'should exist', type: :feature do
       it { expect(page_package(parameters[:package_group], parameters[:package_name], "#{parameters[:package_datestamp]}-#{@instance.descriptor.ec2.component}-latest")).to eql(200) }
     end
   end
