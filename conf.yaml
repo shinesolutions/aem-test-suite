@@ -1,13 +1,35 @@
 ---
-
 aem:
-  author:
+  stack_prefix: aem-stack-full-set
+  stack-manager:
+      sns_topic: ARN_SNS_TOPIC
+      dynamodb_tablename: aem-stack-manager-AemStackManagerTable
+      s3_bucket: aem-stack-builder
+  author-publish-dispatcher:
     username: admin
     password: admin
     protocol: http
     host: localhost
     port: 4502
     debug: false
+    component: author-publish-dispatcher
+
+  author-primary:
+    username: admin
+    password: admin
+    protocol: http
+    host: localhost
+    port: 4502
+    debug: false
+    component: author-primary
+  author-standby:
+    username: admin
+    password: admin
+    protocol: http
+    host: localhost
+    port: 4502
+    debug: false
+    component: author-standby
   publish:
     username: admin
     password: admin
@@ -15,6 +37,7 @@ aem:
     host: localhost
     port: 4503
     debug: false
+    component: publish
   dispatcher:
     protocol: http
     host: localhost
