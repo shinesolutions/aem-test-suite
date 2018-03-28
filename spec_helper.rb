@@ -31,7 +31,7 @@ def init_publish_client(conf)
   )
 end
 
-def init_dispatcher_client(conf)
+def init_web_client(conf)
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js_errors: false)
   end
