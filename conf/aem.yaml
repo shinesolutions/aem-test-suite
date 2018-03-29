@@ -1,0 +1,16 @@
+author:
+  protocol: https
+  host: localhost
+  port: 5432
+  verify_ssl: false
+  debug: false
+publish:
+  protocol: https
+  host: localhost
+  port: 5433
+  verify_ssl: false
+  debug: false
+publish_dispatcher:
+  protocol: https
+  host: localhost
+  port: 443
