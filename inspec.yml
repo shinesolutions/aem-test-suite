@@ -3,5 +3,5 @@ depends:
  #   url: https://github.com/shinesolutions/inspec-aem/archive/master.tar.gz
  - name: aem-security
    url: https://github.com/shinesolutions/inspec-aem-security/archive/master.tar.gz
- # - name: aem-aws
- #   url: https://github.com/shinesolutions/inspec-aem-aws/archive/master.tar.gz
+ - name: aem-aws
+   url: https://github.com/shinesolutions/inspec-aem-aws/archive/master.tar.gz

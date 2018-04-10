@@ -21,6 +21,12 @@ define test_security
 	  INSPEC_AEM_SECURITY_CONF=../../conf/aem.yaml make test-$(1)
 endef
 
+define aws
+	cd vendor/inspec-aem-aws-* && \
+	  INSPEC_AWS_CONF=../../conf/aws.yaml make test-$(1)
+endef
+
+
 test-security-author:
 	$(call test_security,author)
 
@@ -29,6 +35,12 @@ test-security-publish:
 
 test-security-publish-dispatcher:
 	$(call test_security,publish-dispatcher)
+
+test-aws-aem-readiness:
+	$(call aws,ready)
+
+test-aws-aem-recovery:
+	$(call aws,recovery)
 
 test-security: test-security-author test-security-publish test-security-publish-dispatcher
 

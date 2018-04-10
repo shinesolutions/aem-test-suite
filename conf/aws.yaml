@@ -1,0 +1,9 @@
+aws:
+  access_key_id:
+  secret_access_key:
+  profile:
+  s3_bucket:
+aem:
+  component:
+  id:
+  stack_prefix:
