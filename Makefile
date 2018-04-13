@@ -44,4 +44,8 @@ test-aws-aem-recovery:
 
 test-security: test-security-author test-security-publish test-security-publish-dispatcher
 
+test-readiness: test-aws-aem-readiness
+
+test-recovery: test-aws-aem-recovery
+
 .PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security
