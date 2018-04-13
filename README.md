@@ -29,3 +29,10 @@ Run the acceptance test:
 Run the security test:
 
     make test-security
+
+Run the readiness test:
+
+    make test-readiness
+
+Run the recovery test:
+    make test-recovery
