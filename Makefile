@@ -21,9 +21,9 @@ define test_security
 	  INSPEC_AEM_SECURITY_CONF=../../conf/aem.yaml make test-$(1)
 endef
 
-define aws
+define aem_aws
 	cd vendor/inspec-aem-aws-* && \
-	  INSPEC_AWS_CONF=../../conf/aws.yaml make test-$(1)
+	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-$(1)
 endef
 
 
@@ -36,16 +36,16 @@ test-security-publish:
 test-security-publish-dispatcher:
 	$(call test_security,publish-dispatcher)
 
-test-aws-aem-readiness:
-	$(call aws,ready)
+test-aem-aws-readiness:
+	$(call aem_aws,ready)
 
-test-aws-aem-recovery:
-	$(call aws,recovery)
+test-aem-aws-recovery:
+	$(call aem_aws,recovery)
 
 test-security: test-security-author test-security-publish test-security-publish-dispatcher
 
-test-readiness: test-aws-aem-readiness
+test-readiness: test-aem-aws-readiness
 
-test-recovery: test-aws-aem-recovery
+test-recovery: test-aem-aws-recovery
 
 .PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security
