@@ -8,7 +8,7 @@ deps:
 	rm -rf .bundle
 	bundle install
 	inspec vendor --overwrite
-	cd vendor && gunzip *.tar.gz && tar -xvf *.tar
+	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \;
 
 lint:
 	rubocop

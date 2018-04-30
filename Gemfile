@@ -8,3 +8,4 @@ gem 'rake'
 gem 'rspec'
 gem 'rubocop', require: false
 gem 'ruby_aem'
+gem 'ruby_aem_aws'
