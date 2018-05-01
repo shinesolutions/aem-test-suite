@@ -1,3 +1,5 @@
+version ?= 0.9.0
+
 ci: deps lint
 
 clean:
@@ -10,6 +12,23 @@ deps:
 	inspec vendor --overwrite
 	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \;
 
+package:
+	rm -rf stage
+	mkdir -p stage
+	tar \
+	    --exclude='.git*' \
+	    --exclude='.tmp*' \
+	    --exclude='stage*' \
+	    --exclude='.idea*' \
+	    --exclude='.DS_Store*' \
+	    --exclude='logs*' \
+	    --exclude='*.retry' \
+	    --exclude='*.iml' \
+			--exclude='./vendor*' \
+	    -cvf \
+	    stage/aem-stack-manager-messenger-$(version).tar ./
+	gzip stage/aem-stack-manager-messenger-$(version).tar
+
 lint:
 	rubocop
 
@@ -21,9 +40,9 @@ define test_security
 	  INSPEC_AEM_SECURITY_CONF=../../conf/aem.yaml make test-$(1)
 endef
 
-define aem_aws
+define aws
 	cd vendor/inspec-aem-aws-* && \
-	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-$(1)
+	  INSPEC_AWS_CONF=../../conf/aws.yaml make test-$(1)
 endef
 
 
@@ -36,16 +55,16 @@ test-security-publish:
 test-security-publish-dispatcher:
 	$(call test_security,publish-dispatcher)
 
-test-aem-aws-readiness:
-	$(call aem_aws,ready)
+test-aws-aem-readiness:
+	$(call aws,ready)
 
-test-aem-aws-recovery:
-	$(call aem_aws,recovery)
+test-aws-aem-recovery:
+	$(call aws,recovery)
 
 test-security: test-security-author test-security-publish test-security-publish-dispatcher
 
-test-readiness: test-aem-aws-readiness
+test-readiness: test-aws-aem-readiness
 
-test-recovery: test-aem-aws-recovery
+test-recovery: test-aws-aem-recovery
 
 .PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security
