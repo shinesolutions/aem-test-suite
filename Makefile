@@ -26,8 +26,8 @@ package:
 	    --exclude='*.iml' \
 			--exclude='./vendor*' \
 	    -cvf \
-	    stage/aem-stack-manager-messenger-$(version).tar ./
-	gzip stage/aem-stack-manager-messenger-$(version).tar
+	    stage/aem-test-suite-$(version).tar ./
+	gzip stage/aem-test-suite-$(version).tar
 
 lint:
 	rubocop
