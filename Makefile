@@ -36,12 +36,12 @@ acceptance:
 	rspec acceptance/
 
 define test_security
-	cd vendor/inspec-aem-security-* && \
+	cd vendor/inspec-aem-security-?.?.? && \
 	  INSPEC_AEM_SECURITY_CONF=../../conf/aem.yaml make test-$(1)
 endef
 
 define aem_aws
-	cd vendor/inspec-aem-aws-* && \
+	cd vendor/inspec-aem-aws-?.?.? && \
 	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-$(1)
 endef
 
