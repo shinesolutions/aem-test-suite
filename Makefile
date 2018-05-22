@@ -9,8 +9,10 @@ deps:
 	gem install bundler
 	rm -rf .bundle
 	bundle install
-	inspec vendor --overwrite
-	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \;
+	bundle exec inspec vendor --overwrite
+	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \; -exec rm '{}' \;
+	cd vendor && mv inspec-aem-aws-?.?.? inspec-aem-aws
+	cd vendor && mv inspec-aem-security-?.?.? inspec-aem-security
 
 package:
 	rm -rf stage
@@ -36,12 +38,12 @@ acceptance:
 	rspec acceptance/
 
 define test_security
-	cd vendor/inspec-aem-security-?.?.? && \
+	cd vendor/inspec-aem-security && \
 	  INSPEC_AEM_SECURITY_CONF=../../conf/aem.yaml make test-$(1)
 endef
 
 define aem_aws
-	cd vendor/inspec-aem-aws-?.?.? && \
+	cd vendor/inspec-aem-aws && \
 	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-$(1)
 endef
 

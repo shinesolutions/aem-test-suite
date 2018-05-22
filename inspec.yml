@@ -1,6 +1,4 @@
 depends:
- # - name: aem
- #   url: https://github.com/shinesolutions/inspec-aem/archive/0.9.0.tar.gz
  - name: aem-security
    url: https://github.com/shinesolutions/inspec-aem-security/archive/0.9.0.tar.gz
  - name: aem-aws
