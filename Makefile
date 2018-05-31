@@ -1,4 +1,4 @@
-version ?= 0.9.1
+version ?= 0.9.0
 
 ci: deps lint package
 
