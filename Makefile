@@ -1,6 +1,6 @@
-version ?= 0.9.0
+version ?= 0.9.1
 
-ci: deps lint
+ci: deps lint package
 
 clean:
 	rm -rf vendor *.lock
@@ -11,8 +11,8 @@ deps:
 	bundle install
 	bundle exec inspec vendor --overwrite
 	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \; -exec rm '{}' \;
-	cd vendor && mv inspec-aem-aws-?.?.? inspec-aem-aws
-	cd vendor && mv inspec-aem-security-?.?.? inspec-aem-security
+	cd vendor && mv inspec-aem-aws-*.*.* inspec-aem-aws
+	cd vendor && mv inspec-aem-security-*.*.* inspec-aem-security
 
 package:
 	rm -rf stage
