@@ -52,6 +52,10 @@ define test-acceptance
 	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-acceptance-$(1)
 endef
 
+define test-contenthealthcheck-state
+	cd vendor/inspec-aem-aws && \
+	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-contenthealthcheck-alarm-state
+endef
 
 test-security-author:
 	$(call test_security,author)
@@ -88,6 +92,9 @@ test-acceptance-publish-dispatcher:
 
 test-acceptance-orchestrator:
 	$(call test-acceptance,orchestrator)
+
+test-contenthealthcheck-alarm-state:
+	$(call test-contenthealthcheck-state)
 
 test-security: test-security-author test-security-publish test-security-publish-dispatcher
 
