@@ -39,62 +39,70 @@ acceptance:
 
 define test_security
 	cd vendor/inspec-aem-security && \
-	  INSPEC_AEM_SECURITY_CONF=../../conf/aem.yaml make test-$(1)
+	  INSPEC_AEM_SECURITY_CONF=../../conf/aem.yaml \
+		aem_stack_prefix=$(2) \
+		make test-$(1)
 endef
 
 define aem_aws
 	cd vendor/inspec-aem-aws && \
-	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-$(1)
+	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml \
+		aem_stack_prefix=$(2) \
+		make test-$(1)
 endef
 
 define test-acceptance
 	cd vendor/inspec-aem-aws && \
-	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-acceptance-$(1)
+	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml \
+		aem_stack_prefix=$(2) \
+		make test-acceptance-$(1)
 endef
 
 define test-contenthealthcheck-state
 	cd vendor/inspec-aem-aws && \
-	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml make test-contenthealthcheck-alarm-state
+	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml \
+		aem_stack_prefix=$(1) \
+		make test-contenthealthcheck-alarm-state
 endef
 
 test-security-author:
-	$(call test_security,author)
+	$(call test_security,author,$(stack_prefix))
 
 test-security-publish:
-	$(call test_security,publish)
+	$(call test_security,publish,$(stack_prefix))
 
 test-security-publish-dispatcher:
-	$(call test_security,publish-dispatcher)
+	$(call test_security,publish-dispatcher,$(stack_prefix))
 
 test-aem-aws-readiness:
-	$(call aem_aws,readiness)
+	$(call aem_aws,readiness,$(stack_prefix))
 
 test-aem-aws-recovery:
-	$(call aem_aws,recovery)
+	$(call aem_aws,recovery,$(stack_prefix))
 
 test-acceptance-stack:
-	$(call test-acceptance,full-set)
+	$(call test-acceptance,full-set,$(stack_prefix))
 
 test-acceptance-author-primary:
-	$(call test-acceptance,author-primary)
+	$(call test-acceptance,author-primary,$(stack_prefix))
 
 test-acceptance-author-standby:
-	$(call test-acceptance,author-standby)
+	$(call test-acceptance,author-standby,$(stack_prefix))
 
 test-acceptance-publish:
-	$(call test-acceptance,publish)
+	$(call test-acceptance,publish,$(stack_prefix))
 
 test-acceptance-author-dispatcher:
-	$(call test-acceptance,author-dispatcher)
+	$(call test-acceptance,author-dispatcher,$(stack_prefix))
 
 test-acceptance-publish-dispatcher:
-	$(call test-acceptance,publish-dispatcher)
+	$(call test-acceptance,publish-dispatcher,$(stack_prefix))
 
 test-acceptance-orchestrator:
-	$(call test-acceptance,orchestrator)
+	$(call test-acceptance,orchestrator,$(stack_prefix))
 
 test-contenthealthcheck-alarm-state:
-	$(call test-contenthealthcheck-state)
+	$(call test-contenthealthcheck-state,$(stack_prefix))
 
 test-security: test-security-author test-security-publish test-security-publish-dispatcher
 
