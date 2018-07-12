@@ -34,6 +34,12 @@ package:
 lint:
 	rubocop
 
+# copy user config to InSpec profiles config
+config-aem-aws:
+	cp $(config_path)/aem-aws.yaml vendor/inspec-aem-aws/conf/aem-aws.yaml
+config-aem:
+	cp $(config_path)/aem.yaml vendor/inspec-aem-security/conf/aem.yaml
+
 acceptance:
 	rspec acceptance/
 
@@ -104,12 +110,12 @@ test-acceptance-orchestrator:
 test-contenthealthcheck-alarm-state:
 	$(call test-contenthealthcheck-state,$(stack_prefix))
 
-test-security-full-set: test-security-author test-security-publish test-security-publish-dispatcher
+test-security: config-aem test-security-author test-security-publish test-security-publish-dispatcher
 
-test-readiness-full-set: test-aem-aws-readiness-full-set
+test-readiness-full-set: config-aem-aws test-aem-aws-readiness-full-set
 
-test-recovery-full-set: test-aem-aws-recovery-full-set
+test-recovery-full-set: config-aem-aws test-aem-aws-recovery-full-set
 
-test-acceptance-full-set: test-acceptance-architecture-full-set test-acceptance-author-primary test-acceptance-author-standby test-acceptance-publish test-acceptance-author-dispatcher test-acceptance-publish-dispatcher test-acceptance-orchestrator
+test-acceptance-full-set: config-aem-aws test-acceptance-architecture-full-set test-acceptance-author-primary test-acceptance-author-standby test-acceptance-publish test-acceptance-author-dispatcher test-acceptance-publish-dispatcher test-acceptance-orchestrator
 
 .PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security

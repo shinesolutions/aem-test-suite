@@ -24,15 +24,15 @@ Usage
 
 Run the acceptance test:
 
-    make acceptance-full-set stack
+    make acceptance-full-set stack_prefix=<stack_prefix> config_path=<path/to/config/dir>
 
 Run the security test:
 
-    make test-security-full-set
+    make test-security config_path=<path/to/config/dir>
 
 Run the readiness test:
 
-    make test-readiness-full-set
+    make test-readiness-full-set stack_prefix=<stack_prefix> config_path=<path/to/config/dir>
 
 Run the recovery test:
-    make test-recovery-full-set
+    make test-recovery-full-set stack_prefix=<stack_prefix> config_path=<path/to/config/dir>
