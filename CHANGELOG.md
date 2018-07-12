@@ -1,3 +1,6 @@
+### 0.9.4
+*
+
 ### 0.9.3
 * Stack prefix is now a Make target argument instead of environment variable #20
 * Add architecture suffix to all Make targets
