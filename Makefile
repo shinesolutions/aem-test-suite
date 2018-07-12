@@ -74,13 +74,13 @@ test-security-publish:
 test-security-publish-dispatcher:
 	$(call test_security,publish-dispatcher,$(stack_prefix))
 
-test-aem-aws-readiness:
+test-aem-aws-readiness-full-set:
 	$(call aem_aws,readiness,$(stack_prefix))
 
-test-aem-aws-recovery:
+test-aem-aws-recovery-full-set:
 	$(call aem_aws,recovery,$(stack_prefix))
 
-test-acceptance-stack:
+test-acceptance-architecture-full-set:
 	$(call test-acceptance,full-set,$(stack_prefix))
 
 test-acceptance-author-primary:
@@ -104,12 +104,12 @@ test-acceptance-orchestrator:
 test-contenthealthcheck-alarm-state:
 	$(call test-contenthealthcheck-state,$(stack_prefix))
 
-test-security: test-security-author test-security-publish test-security-publish-dispatcher
+test-security-full-set: test-security-author test-security-publish test-security-publish-dispatcher
 
-test-readiness: test-aem-aws-readiness
+test-readiness-full-set: test-aem-aws-readiness-full-set
 
-test-recovery: test-aem-aws-recovery
+test-recovery-full-set: test-aem-aws-recovery-full-set
 
-test-acceptance-full-set: test-acceptance-stack test-acceptance-author-primary test-acceptance-author-standby test-acceptance-publish test-acceptance-author-dispatcher test-acceptance-publish-dispatcher test-acceptance-orchestrator
+test-acceptance-full-set: test-acceptance-architecture-full-set test-acceptance-author-primary test-acceptance-author-standby test-acceptance-publish test-acceptance-author-dispatcher test-acceptance-publish-dispatcher test-acceptance-orchestrator
 
 .PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security

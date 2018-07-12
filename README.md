@@ -24,15 +24,15 @@ Usage
 
 Run the acceptance test:
 
-    make acceptance
+    make acceptance-full-set stack
 
 Run the security test:
 
-    make test-security
+    make test-security-full-set
 
 Run the readiness test:
 
-    make test-readiness
+    make test-readiness-full-set
 
 Run the recovery test:
-    make test-recovery
+    make test-recovery-full-set
