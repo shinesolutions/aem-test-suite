@@ -26,7 +26,6 @@ package:
 	    --exclude='logs*' \
 	    --exclude='*.retry' \
 	    --exclude='*.iml' \
-			--exclude='./vendor*' \
 	    -cvf \
 	    stage/aem-test-suite-$(version).tar ./
 	gzip stage/aem-test-suite-$(version).tar

@@ -1,5 +1,5 @@
 ### 0.9.4
-*
+* Include vendor in published package
 
 ### 0.9.3
 * Stack prefix is now a Make target argument instead of environment variable #20
