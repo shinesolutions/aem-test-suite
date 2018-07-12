@@ -1,6 +1,6 @@
 version ?= 0.9.4
 
-ci: deps lint package
+ci: clean deps lint package
 
 clean:
 	rm -rf vendor *.lock
