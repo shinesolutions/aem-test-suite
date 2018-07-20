@@ -35,4 +35,5 @@ Run the readiness test:
     make test-readiness-full-set stack_prefix=<stack_prefix> config_path=<path/to/config/dir>
 
 Run the recovery test:
+
     make test-recovery-full-set stack_prefix=<stack_prefix> config_path=<path/to/config/dir>
