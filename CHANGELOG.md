@@ -1,6 +1,7 @@
 ### 0.9.4
 * Include vendor in published package
 * Lock down InSpec dependency to 1.51.6 due to AWS SDK version dep in Chef tools
+* Drop Ruby 2.1 and 2.2 support due to InSpec requirement
 
 ### 0.9.3
 * Stack prefix is now a Make target argument instead of environment variable #20
