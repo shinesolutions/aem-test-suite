@@ -1,3 +1,6 @@
+### 0.9.5
+*
+
 ### 0.9.4
 * Include vendor in published package
 * Lock down InSpec dependency to 1.51.6 due to AWS SDK version dep in Chef tools
