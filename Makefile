@@ -1,14 +1,14 @@
-version ?= 0.9.5
+version ?= 0.9.6
 
 ci: clean deps lint package
 
 clean:
-	rm -rf vendor *.lock
+	rm -rf bin/ vendor
 
 deps:
 	gem install bundler
 	rm -rf .bundle
-	bundle install
+	bundle install --binstubs
 	bundle exec inspec vendor --overwrite
 	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \; -exec rm '{}' \;
 	cd vendor && mv inspec-aem-aws-*.*.* inspec-aem-aws
@@ -19,6 +19,9 @@ package:
 	mkdir -p stage
 	tar \
 	    --exclude='.git*' \
+			--exclude='.bundle*' \
+			--exclude='bin*' \
+			--exclude='vendor*' \
 	    --exclude='.tmp*' \
 	    --exclude='stage*' \
 	    --exclude='.idea*' \
@@ -31,7 +34,7 @@ package:
 	gzip stage/aem-test-suite-$(version).tar
 
 lint:
-	rubocop
+	bundle exec rubocop Gemfile
 
 # copy user config to InSpec profiles config
 config-aem-aws:
