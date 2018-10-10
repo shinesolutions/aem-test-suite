@@ -1,3 +1,6 @@
+### 0.9.7
+*
+
 ### 0.9.6
 * Introduce bundle vendoring
 * Sync all aem-test-suite InSpec libraries to use InSpec 1.51.6 
