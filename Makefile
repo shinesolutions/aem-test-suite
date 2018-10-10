@@ -1,4 +1,4 @@
-version ?= 0.9.7
+version ?= 0.9.8
 
 ci: clean deps lint package
 
@@ -11,8 +11,8 @@ deps:
 	bundle install --binstubs
 	bundle exec inspec vendor --overwrite
 	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \; -exec rm '{}' \;
-	cd vendor && mv inspec-aem-aws-*.*.* inspec-aem-aws
-	cd vendor && mv inspec-aem-security-*.*.* inspec-aem-security
+	cd vendor && mv inspec-aem-aws-*.*.* inspec-aem-aws && cd inspec-aem-aws && make deps
+	cd vendor && mv inspec-aem-security-*.*.* inspec-aem-security && cd inspec-aem-security && make deps
 
 package:
 	rm -rf stage

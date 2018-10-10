@@ -1,9 +1,12 @@
-### 0.9.7
+### 0.9.8
 *
+
+### 0.9.7
+* Resolve InSpec profile dependencies as part of deps target
 
 ### 0.9.6
 * Introduce bundle vendoring
-* Sync all aem-test-suite InSpec libraries to use InSpec 1.51.6 
+* Sync all aem-test-suite InSpec libraries to use InSpec 1.51.6
 * Upgrade inspec-aem-aws to 0.11.5, inspec-aem to 0.10.0, inspec-aem-security to 0.10.0
 
 ### 0.9.4
