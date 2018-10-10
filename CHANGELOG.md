@@ -1,5 +1,8 @@
-### 0.9.8
+### 0.9.9
 *
+
+### 0.9.8
+* Upgrade inspec-aem-security to 0.10.1 to avoid aws-sdk dependency conflict
 
 ### 0.9.7
 * Resolve InSpec profile dependencies as part of deps target
