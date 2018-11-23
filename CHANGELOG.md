@@ -1,5 +1,5 @@
 ### 0.9.9
-*
+* Fix the make targets to load correct configuration file #24
 
 ### 0.9.8
 * Upgrade inspec-aem-security to 0.10.1 to avoid aws-sdk dependency conflict
