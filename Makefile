@@ -47,28 +47,28 @@ acceptance:
 
 define test_security
 	cd vendor/inspec-aem-security && \
-	  INSPEC_AEM_SECURITY_CONF=../../conf/aem.yaml \
+	  INSPEC_AEM_SECURITY_CONF=conf/aem.yaml \
 		aem_stack_prefix=$(2) \
 		make test-$(1)
 endef
 
 define aem_aws
 	cd vendor/inspec-aem-aws && \
-	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml \
+	  INSPEC_AEM_AWS_CONF=conf/aem-aws.yaml \
 		aem_stack_prefix=$(2) \
 		make test-$(1)
 endef
 
 define test-acceptance
 	cd vendor/inspec-aem-aws && \
-	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml \
+	  INSPEC_AEM_AWS_CONF=conf/aem-aws.yaml \
 		aem_stack_prefix=$(2) \
 		make test-acceptance-$(1)
 endef
 
 define test-contenthealthcheck-state
 	cd vendor/inspec-aem-aws && \
-	  INSPEC_AEM_AWS_CONF=../../conf/aem-aws.yaml \
+	  INSPEC_AEM_AWS_CONF=conf/aem-aws.yaml \
 		aem_stack_prefix=$(1) \
 		make test-contenthealthcheck-alarm-state
 endef
