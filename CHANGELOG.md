@@ -1,3 +1,6 @@
+### 0.9.10
+*
+
 ### 0.9.9
 * Fix the make targets to load correct configuration file #24
 
