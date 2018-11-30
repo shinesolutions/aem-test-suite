@@ -1,5 +1,5 @@
 ### 0.9.10
-*
+* Fix the make target test-contenthealthcheck-alarm-state to load correct configuration file #24
 
 ### 0.9.9
 * Fix the make targets to load correct configuration file #24

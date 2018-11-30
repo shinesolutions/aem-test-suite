@@ -109,7 +109,7 @@ test-acceptance-publish-dispatcher:
 test-acceptance-orchestrator:
 	$(call test-acceptance,orchestrator,$(stack_prefix))
 
-test-contenthealthcheck-alarm-state:
+test-contenthealthcheck-alarm:
 	$(call test-contenthealthcheck-state,$(stack_prefix))
 
 test-security: config-aem test-security-author test-security-publish test-security-publish-dispatcher
@@ -119,5 +119,7 @@ test-readiness-full-set: config-aem-aws test-aem-aws-readiness-full-set
 test-recovery-full-set: config-aem-aws test-aem-aws-recovery-full-set
 
 test-acceptance-full-set: config-aem-aws test-acceptance-architecture-full-set test-acceptance-author-primary test-acceptance-author-standby test-acceptance-publish test-acceptance-author-dispatcher test-acceptance-publish-dispatcher test-acceptance-orchestrator
+
+test-contenthealthcheck-alarm-state: config-aem-aws test-contenthealthcheck-alarm
 
 .PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security
