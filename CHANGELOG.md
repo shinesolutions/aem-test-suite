@@ -1,3 +1,6 @@
+### 0.9.11
+*
+
 ### 0.9.10
 * Fix the make target test-contenthealthcheck-alarm-state to load correct configuration file #24
 
