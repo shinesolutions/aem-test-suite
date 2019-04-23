@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-
 - Update Changelog style to [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+- Upgrade inspec-aem-aws to 0.14.0
 
 ## [0.9.10] - 2018-12-03
 
