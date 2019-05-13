@@ -6,7 +6,7 @@ clean:
 	rm -rf bin/ vendor
 
 deps:
-	gem install bundler
+	gem install bundler --version=2.0.1
 	rm -rf .bundle
 	bundle install --binstubs
 	bundle exec inspec vendor --overwrite
