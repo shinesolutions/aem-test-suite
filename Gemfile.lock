@@ -772,4 +772,4 @@ DEPENDENCIES
   ruby_aem_aws (= 1.1.0)
 
 BUNDLED WITH
-   2.0.1
+   1.16.2
