@@ -5,18 +5,10 @@ ci: clean deps lint package
 clean:
 	rm -rf bin/ vendor
 
-deps:
-	gem install bundler --version=2.0.1
-	rm -rf .bundle
-	bundle install --binstubs
-	bundle exec inspec vendor --overwrite
-	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \; -exec rm '{}' \;
-	cd vendor && mv inspec-aem-aws-*.*.* inspec-aem-aws && cd inspec-aem-aws && make deps
-	cd vendor && mv inspec-aem-security-*.*.* inspec-aem-security && cd inspec-aem-security && make deps
-
-package:
-	rm -rf stage
+stage:
 	mkdir -p stage
+
+package: stage
 	tar \
 	    --exclude='.git*' \
 			--exclude='.bundle*' \
@@ -29,9 +21,25 @@ package:
 	    --exclude='logs*' \
 	    --exclude='*.retry' \
 	    --exclude='*.iml' \
-	    -cvf \
-	    stage/aem-test-suite-$(version).tar ./
-	gzip stage/aem-test-suite-$(version).tar
+	    -cvzf \
+	    stage/aem-test-suite-$(version).tar.gz .
+
+################################################################################
+# Dependencies resolution targets.
+# For deps-test-local targets, the local dependencies must be available on the
+# same directory level where aem-stack-manager-messenger is at. The idea is
+# that you can test AEM Stack Manager Messenger while also developing those
+# dependencies locally.
+################################################################################
+
+deps:
+	gem install bundler --version=1.17.3
+	rm -rf .bundle
+	bundle install --binstubs
+	bundle exec inspec vendor --overwrite
+	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \; -exec rm '{}' \;
+	cd vendor && mv inspec-aem-aws-*.*.* inspec-aem-aws && cd inspec-aem-aws && make deps
+	cd vendor && mv inspec-aem-security-*.*.* inspec-aem-security && cd inspec-aem-security && make deps
 
 lint:
 	bundle exec rubocop Gemfile
