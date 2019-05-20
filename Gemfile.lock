@@ -761,15 +761,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capybara
-  file_utils
+  capybara (= 3.9.0)
+  file_utils (= 1.1.2)
   inspec (= 1.51.6)
-  poltergeist
-  rake
-  rspec
-  rubocop
-  ruby_aem
-  ruby_aem_aws
+  poltergeist (= 1.18.1)
+  rake (= 12.3.1)
+  rspec (= 3.8.0)
+  rubocop (= 0.59.2)
+  ruby_aem (= 2.1.0)
+  ruby_aem_aws (= 1.1.0)
 
 BUNDLED WITH
-   1.16.6
+   1.16.2
