@@ -130,4 +130,7 @@ test-acceptance-full-set: config-aem-aws test-acceptance-architecture-full-set t
 
 test-contenthealthcheck-alarm-state: config-aem-aws test-contenthealthcheck-alarm
 
-.PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security
+release:
+	rtk release
+
+.PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security release
