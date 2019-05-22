@@ -3,7 +3,7 @@ version ?= 0.9.12-pre.0
 ci: clean deps lint package
 
 clean:
-	rm -rf bin/ vendor
+	rm -rf bin/ vendor Gemfile.lock
 
 stage:
 	mkdir -p stage
@@ -38,8 +38,8 @@ deps:
 	bundle install --binstubs
 	bundle exec inspec vendor --overwrite
 	cd vendor && find . -name "*.tar.gz" -exec tar -xzvf '{}' \; -exec rm '{}' \;
-	cd vendor && mv inspec-aem-aws-*.*.* inspec-aem-aws && cd inspec-aem-aws && make deps
-	cd vendor && mv inspec-aem-security-*.*.* inspec-aem-security && cd inspec-aem-security && make deps
+	cd vendor && mv inspec-aem-aws-*.*.* inspec-aem-aws && cd inspec-aem-aws && make clean deps
+	cd vendor && mv inspec-aem-security-*.*.* inspec-aem-security && cd inspec-aem-security && make clean deps
 
 lint:
 	bundle exec rubocop Gemfile
