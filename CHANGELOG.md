@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add readiness check for consolidated
 
+### Changed
+- Drop ruby 2.3 support
+
 ## 0.9.12 - 2019-05-22
 ### Changed
 - Upgrade inspec-aem-aws to 0.14.1
