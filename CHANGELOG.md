@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add Make target for testing provisioning state
+- Add Make target for testing provisioning state & full-set readiness
+- Add Make target for testing readiness on consolidated
+
 ## 1.0.0 - 2019-05-23
 ### Added
 - Add readiness check for consolidated

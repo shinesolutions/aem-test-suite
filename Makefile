@@ -101,6 +101,12 @@ test-security-publish-dispatcher:
 test-aem-aws-readiness-full-set:
 	$(call aem_aws,readiness,$(stack_prefix))
 
+test-aem-aws-provisioning-full-set:
+	$(call aem_aws,provisioning,$(stack_prefix))
+
+test-aem-aws-provisioning-readiness-full-set:
+	$(call aem_aws,provisioning-readiness,$(stack_prefix))
+
 test-aem-aws-readiness-consolidated:
 	$(call test-readiness-consolidated,$(stack_prefix))
 
@@ -134,6 +140,12 @@ test-contenthealthcheck-alarm:
 test-security: config-aem test-security-author test-security-publish test-security-publish-dispatcher
 
 test-readiness-full-set: config-aem-aws test-aem-aws-readiness-full-set
+
+test-provisioning-full-set: config-aem-aws test-aem-aws-provisioning-full-set
+
+test-provisioning-readiness-full-set: config-aem-aws test-aem-aws-provisioning-readiness-full-set
+
+test-readiness-consolidated: config-aem-aws test-aem-aws-readiness-consolidated
 
 test-recovery-full-set: config-aem-aws test-aem-aws-recovery-full-set
 
