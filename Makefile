@@ -67,6 +67,14 @@ define aem_aws
 		make test-$(1)
 endef
 
+define test-readiness-consolidated
+	cd vendor/inspec-aem-aws && \
+	  INSPEC_AEM_AWS_CONF=conf/aem-aws.yaml \
+		aem_stack_prefix=$(1) \
+		aem_component=author-publish-dispatcher \
+		make test-successful-provisioning-author-publish-dispatcher
+endef
+
 define test-acceptance
 	cd vendor/inspec-aem-aws && \
 	  INSPEC_AEM_AWS_CONF=conf/aem-aws.yaml \
@@ -92,6 +100,9 @@ test-security-publish-dispatcher:
 
 test-aem-aws-readiness-full-set:
 	$(call aem_aws,readiness,$(stack_prefix))
+
+test-aem-aws-readiness-consolidated:
+	$(call test-readiness-consolidated,$(stack_prefix))
 
 test-aem-aws-recovery-full-set:
 	$(call aem_aws,recovery,$(stack_prefix))
