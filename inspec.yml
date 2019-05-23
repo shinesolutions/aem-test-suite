@@ -2,4 +2,4 @@ depends:
  - name: aem-security
    url: https://github.com/shinesolutions/inspec-aem-security/archive/0.10.2.tar.gz
  - name: aem-aws
-   url: https://github.com/shinesolutions/inspec-aem-aws/archive/0.15.0.tar.gz
+   url: https://github.com/shinesolutions/inspec-aem-aws/archive/1.0.0.tar.gz

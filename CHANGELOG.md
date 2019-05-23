@@ -12,14 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Make target for testing provisioning state & full-set readiness
 - Add Make target for testing readiness on consolidated
 
-## 1.0.0 - 2019-05-23
+## 1.1.0 - 2019-05-23
 ### Added
 - Add readiness check for consolidated
 
 ### Changed
 - Drop ruby 2.3 support
-- Upgrade inspec-aem-aws to 0.15.0
-- Readiness check now utilises ComponentInitStatus tags
+- Upgrade inspec-aem-aws to 1.0.0
+- Readiness check now utilises ComponentInitStatus tag
 
 ## 0.9.12 - 2019-05-22
 ### Changed
