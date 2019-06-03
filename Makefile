@@ -107,6 +107,15 @@ test-aem-aws-provisioning-full-set:
 test-aem-aws-provisioning-readiness-full-set:
 	$(call aem_aws,provisioning-readiness,$(stack_prefix))
 
+test-aem-aws-readiness-full-set-with-disabled-chaosmonkey:
+	$(call aem_aws,readiness-with-disabled-chaosmonkey,$(stack_prefix))
+
+test-aem-aws-provisioning-full-set-with-disabled-chaosmonkey:
+	$(call aem_aws,provisioning-with-disabled-chaosmonkey,$(stack_prefix))
+
+test-aem-aws-provisioning-readiness-full-set-with-disabled-chaosmonkey:
+	$(call aem_aws,provisioning-readiness-with-disabled-chaosmonkey,$(stack_prefix))
+
 test-aem-aws-readiness-consolidated:
 	$(call test-readiness-consolidated,$(stack_prefix))
 
@@ -144,6 +153,12 @@ test-readiness-full-set: config-aem-aws test-aem-aws-readiness-full-set
 test-provisioning-full-set: config-aem-aws test-aem-aws-provisioning-full-set
 
 test-provisioning-readiness-full-set: config-aem-aws test-aem-aws-provisioning-readiness-full-set
+
+test-readiness-full-set-with-disabled-chaosmonkey: config-aem-aws test-aem-aws-readiness-full-set
+
+test-provisioning-full-set-with-disabled-chaosmonkey: config-aem-aws test-aem-aws-provisioning-full-set
+
+test-provisioning-readiness-full-set-with-disabled-chaosmonkey: config-aem-aws test-aem-aws-provisioning-readiness-full-set
 
 test-readiness-consolidated: config-aem-aws test-aem-aws-readiness-consolidated
 
