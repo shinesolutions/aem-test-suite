@@ -122,6 +122,9 @@ test-aem-aws-readiness-consolidated:
 test-aem-aws-recovery-full-set:
 	$(call aem_aws,recovery,$(stack_prefix))
 
+test-aem-aws-recovery-full-set-with-disabled-chaosmonkey:
+	$(call aem_aws,recovery-with-disabled-chaosmonkey,$(stack_prefix))
+
 test-acceptance-architecture-full-set:
 	$(call test-acceptance,full-set,$(stack_prefix))
 
@@ -163,6 +166,8 @@ test-provisioning-readiness-full-set-with-disabled-chaosmonkey: config-aem-aws t
 test-readiness-consolidated: config-aem-aws test-aem-aws-readiness-consolidated
 
 test-recovery-full-set: config-aem-aws test-aem-aws-recovery-full-set
+
+test-recovery-full-set-with-disabled-chaosmonkey: config-aem-aws test-aem-aws-recovery-full-set-with-disabled-chaosmonkey
 
 test-acceptance-full-set: config-aem-aws test-acceptance-architecture-full-set test-acceptance-author-primary test-acceptance-author-standby test-acceptance-publish test-acceptance-author-dispatcher test-acceptance-publish-dispatcher test-acceptance-orchestrator
 
