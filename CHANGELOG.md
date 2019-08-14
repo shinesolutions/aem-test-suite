@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgrade inspec-aem-aws to 1.2.0
+
 ## 1.3.0 - 2019-07-24
 ### Added
 - Add new make target to check FS stacks with disabled chaos monkey shinesolutions/aem-aws-stack-builder#290
