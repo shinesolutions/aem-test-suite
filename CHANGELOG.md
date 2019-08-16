@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 ### Changed
-- Changed the cp to \cp to bypass overwrite and *.txt added message#35
+- Changed the cp to \cp to bypass overwrite and * added message#35
 
 ## 1.4.0 - 2019-08-15
 ### Changed
