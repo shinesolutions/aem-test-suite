@@ -46,9 +46,9 @@ lint:
 
 # copy user config to InSpec profiles config
 config-aem-aws:
-	cp $(config_path)/aem-aws.yaml vendor/inspec-aem-aws/conf/aem-aws.yaml
+	\cp $(config_path)/aem-aws.yaml vendor/inspec-aem-aws/conf/aem-aws.yaml
 config-aem:
-	cp $(config_path)/aem.yaml vendor/inspec-aem-security/conf/aem.yaml
+	\cp $(config_path)/aem.yaml vendor/inspec-aem-security/conf/aem.yaml
 
 acceptance:
 	rspec acceptance/
