@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Update library dependencies in order to fix deps resolve slowness
+
 ## 1.7.0 - 2019-11-26
 ### Changed
 - Upgrade inspec-aem-aws to 1.5.0
