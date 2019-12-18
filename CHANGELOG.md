@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add new make target `config` to replace deprecated make targets `config-aem-aws` & `config-aem`#35
+
+### Changed
+- Make targets `config-aem-aws` & `config-aem` are now deprecated #35
+
 ## 1.9.0 - 2019-12-12
 ### Changed
 - Reset last gem updates in order to maintain consistency with sub-deps
