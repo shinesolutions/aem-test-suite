@@ -23,5 +23,5 @@ aem:
 tmp_dir: /tmp/shinesolutions/aem-aws-stack-builder
 
 content_package:
-  url: http://central.maven.org/maven2/com/shinesolutions/aem-helloworld-content/%{version}/aem-helloworld-content-%{version}.zip
+  url: https://repo.maven.apache.org/maven2/com/shinesolutions/aem-helloworld-content/%{version}/aem-helloworld-content-%{version}.zip
   version: 0.0.1
