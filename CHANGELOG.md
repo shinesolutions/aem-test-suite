@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgraded inspec-aem-aws to 1.9.0
+- Upgraded inspec-aem-security to 1.1.0
+
 ## 1.13.0 - 2020-01-19
 ### Changed
 - Replace Maven Central domain http://central.maven.org with https://repo.maven.apache.org
