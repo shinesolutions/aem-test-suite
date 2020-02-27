@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Update inspec-aem-aws configuration to increase readiness test retry to 6h
+- Update inspec-aem-aws configuration to increase recovery test retry to 6h
+
 ## 1.14.0 - 2020-02-17
 ### Changed
 - Upgraded inspec-aem-aws to 1.9.0
