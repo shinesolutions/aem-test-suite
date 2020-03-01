@@ -10,4 +10,4 @@ gem 'rake', '12.3.3'
 gem 'rspec', '3.8.0'
 gem 'rubocop', '0.69.0', require: false
 gem 'ruby_aem', '2.5.1'
-gem 'ruby_aem_aws', '1.2.1'
+gem 'ruby_aem_aws', '1.5.0'
