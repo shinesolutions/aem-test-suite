@@ -5,8 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
-
+## 1.15.0 - 2020-03-01
 ### Changed
 - Update inspec-aem-aws configuration to increase readiness test retry to 6h
 - Update inspec-aem-aws configuration to increase recovery test retry to 6h
