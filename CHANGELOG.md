@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update inspec-aem-aws configuration to increase readiness test retry to 6h
 - Update inspec-aem-aws configuration to increase recovery test retry to 6h
+- Upgraded inspec-aem-aws to 1.10.0
 - Upgraded ruby-aem-aws to 1.5.0
 
 ## 1.14.0 - 2020-02-17
