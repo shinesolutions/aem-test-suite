@@ -1,8 +1,9 @@
 aws:
   access_key_id:
   secret_access_key:
-  profile: default
+  profile:
   s3_bucket:
+  region:
 aem:
   component:
   id:
