@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/shinesolutions/aem-test-suite.svg)](http://travis-ci.org/shinesolutions/aem-test-suite)
+[![Build Status](https://github.com/shinesolutions/aem-test-suite/workflows/CI/badge.svg)](https://github.com/shinesolutions/aem-test-suite/actions?query=workflow%3ACI)
 
 AEM Test Suite
 --------------
