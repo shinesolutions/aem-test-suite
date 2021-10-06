@@ -24,6 +24,21 @@ package: stage
 	    -cvzf \
 	    stage/aem-test-suite-$(version).tar.gz .
 
+publish:
+	gh release create $(version) --title $(version) --notes "" || echo "Release $(version) has been created on GitHub"
+	gh release upload $(version) stage/aem-test-suite-$(version).tar.gz
+
+release-major:
+	rtk release --release-increment-type major
+
+release-minor:
+	rtk release --release-increment-type minor
+
+release-patch:
+	rtk release --release-increment-type patch
+
+release: release-minor
+
 ################################################################################
 # Dependencies resolution targets.
 # For deps-test-local targets, the local dependencies must be available on the
@@ -177,7 +192,4 @@ test-acceptance-full-set: config-aem-aws test-acceptance-architecture-full-set t
 
 test-contenthealthcheck-alarm-state: config-aem-aws test-contenthealthcheck-alarm
 
-release:
-	rtk release
-
-.PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security release
+.PHONY: ci deps lint acceptance test-security-author test-security-publish test-security-publish-dispatcher test-security release release-major release-minor release-patch
