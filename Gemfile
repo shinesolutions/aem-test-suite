@@ -9,5 +9,5 @@ gem 'poltergeist', '1.18.1'
 gem 'rake', '12.3.3'
 gem 'rspec', '3.8.0'
 gem 'rubocop', '0.69.0', require: false
-gem 'ruby_aem', '2.5.1'
-gem 'ruby_aem_aws', '2.0.0'
+gem 'ruby_aem', '3.13.1'
+gem 'ruby_aem_aws', '2.0.1'
