@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgraded inspec-aem-aws to 2.1.0
+
 ## 2.1.0 - 2021-10-06
 ### Added
 - Add release-major, release-minor, release-patch, and publish Makefile targets and GitHub Actions
