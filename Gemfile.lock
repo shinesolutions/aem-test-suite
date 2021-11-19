@@ -1314,7 +1314,7 @@ GEM
       retries (= 0.0.5)
       swagger_aem (= 3.6.2)
       swagger_aem_osgi (= 1.0.0)
-    ruby_aem_aws (2.0.1)
+    ruby_aem_aws (2.1.0)
       aws-sdk (= 3.0.1)
       retries (= 0.0.5)
       tuples (= 0.1.0)
@@ -1376,7 +1376,7 @@ DEPENDENCIES
   rspec (= 3.8.0)
   rubocop (= 0.69.0)
   ruby_aem (= 3.13.1)
-  ruby_aem_aws (= 2.0.1)
+  ruby_aem_aws (= 2.1.0)
 
 BUNDLED WITH
    1.17.3
