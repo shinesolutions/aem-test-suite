@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgraded inspec-aem-aws to 2.2.0
+- Upgraded ruby_aem_aws to 2.2.0
+
 ## 2.2.1 - 2021-11-19
 ### Fixed
 - Fix incompatible ruby_aem_aws version for inspec-aem-aws 2.1.0
