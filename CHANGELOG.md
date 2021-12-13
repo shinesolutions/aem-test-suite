@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgraded inspec-aem-security to 1.2.0
+
 ## 2.4.0 - 2021-12-02
 ### Changed
 - Upgraded inspec-aem-aws to 2.3.0
