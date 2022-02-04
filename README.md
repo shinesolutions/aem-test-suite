@@ -24,7 +24,7 @@ Usage
 
 Run the acceptance test:
 
-    make acceptance-full-set stack_prefix=<stack_prefix> config_path=<path/to/config/dir>
+    make test-acceptance-full-set stack_prefix=<stack_prefix> config_path=<path/to/config/dir>
 
 Run the security test:
 
