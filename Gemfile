@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'capybara', '3.20.0'
+gem 'capybara', '3.30.0'
 gem 'file_utils', '1.1.2'
 gem 'inspec', '1.51.6'
 gem 'poltergeist', '1.18.1'
