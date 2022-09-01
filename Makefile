@@ -48,7 +48,7 @@ release: release-minor
 ################################################################################
 
 deps:
-	gem install bundler --version=1.17.3
+	gem install bundler --version=2.3.21
 	rm -rf .bundle
 	bundle install --binstubs
 	bundle exec inspec vendor --overwrite
