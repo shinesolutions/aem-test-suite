@@ -8,6 +8,6 @@ depends:
   version_constraints: "[]"
 - name: aem-aws
   resolved_source:
-    url: https://github.com/shinesolutions/inspec-aem-aws/archive/2.4.0.tar.gz
-    sha256: 86b0f1e4b3e440a16c0c5bee84d4d275dfc4a8d4f232f0b5294fdf494da85c04
+    url: https://github.com/shinesolutions/inspec-aem-aws/archive/2.5.0.tar.gz
+    sha256: 9eb0977527571c18910bbb4fb4539e36d52a7396ff9d912beab2e65e86bc353f
   version_constraints: "[]"
