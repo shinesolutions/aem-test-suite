@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 ### Changed
-- Upgraded aem-security to 1.5.0
+- Upgraded aem-security to 1.6.0
 
 ## 2.10.0 - 2022-09-12
 ### Changed
