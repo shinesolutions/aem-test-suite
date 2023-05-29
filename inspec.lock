@@ -3,11 +3,11 @@ lockfile_version: 1
 depends:
 - name: aem-security
   resolved_source:
-    url: https://github.com/shinesolutions/inspec-aem-security/archive/1.4.0.tar.gz
-    sha256: b8dc849204ed4c0b9bba085108fe59b4e7e8d8e3c830c82ce43510cfe90c3bb0
+    url: https://github.com/shinesolutions/inspec-aem-security/archive/1.6.0.tar.gz
+    sha256: f310ef0ce6f9e0965980b45321dc3b6f26e37b05b0a7a7531486f1ef26d97b94
   version_constraints: "[]"
 - name: aem-aws
   resolved_source:
-    url: https://github.com/shinesolutions/inspec-aem-aws/archive/2.5.0.tar.gz
-    sha256: 9eb0977527571c18910bbb4fb4539e36d52a7396ff9d912beab2e65e86bc353f
+    url: https://github.com/shinesolutions/inspec-aem-aws/archive/2.6.0.tar.gz
+    sha256: 27a06fa6168e74b2bf89e665f4a903b0439d40919fc5f994a72f1eb389584ca2
   version_constraints: "[]"
