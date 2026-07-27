@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Simplify GitHub Actions release workflows to not use custom action
 
+### Fixed
+- Fix .rtk.json jobs.build.steps property path to use array bracket notation (steps[0] instead of steps.0)
+
 ## 2.12.0 - 2023-05-29
 ### Changed
 - Upgraded inspec-aem-aws to 2.6.0
