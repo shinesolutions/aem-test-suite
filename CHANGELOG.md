@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Simplify GitHub Actions release workflows to not use custom action
 
 ### Fixed
+- Fix release workflows to use SHINEOPENSOURCE_GITHUB_TOKEN instead of SHINEWORKS_GITHUB_TOKEN, matching this repo's original token
 - Fix .rtk.json jobs.build.steps property path to use array bracket notation (steps[0] instead of steps.0)
 
 ## 2.12.0 - 2023-05-29
